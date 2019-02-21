@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.formfield
 
 data class ValidationResult(
     var isValid: Boolean,
