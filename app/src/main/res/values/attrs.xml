@@ -2,12 +2,6 @@
 <resources>
     
     <declare-styleable name="EditTextFormField">
-        <attr name="regex">
-            <enum name="phone" value="0"/>
-            <enum name="email" value="1"/>
-            <enum name="date" value="2"/>
-
-
-        </attr>
+        <attr name="regex" format="string"/>
     </declare-styleable>
 </resources>
