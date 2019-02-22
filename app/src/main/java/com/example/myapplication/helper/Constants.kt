@@ -16,4 +16,36 @@ const val PHONE_NUMBER_FORMAT_ONE_HYPHEN_COUNT = 1
 const val HYPHEN = "-"
 const val OPTION_PHONE = 0
 const val OPTION_EMAIL = 1
-const val OPTION_Date = 2
+const val OPTION_DATE = 2
+const val NO_DIGITS_REGEX = "[^\\d.]|\\."
+const val PHONE_NUMBER_REGEX = "\\d{3}-\\d{3}-\\d{4}"
+const val DATE_REGEX = "\\d{2}\\/\\d{2}\\/\\d{4}"
+const val SLASH = "/"
+const val ONE = 1
+const val ZERO = 0
+
+
+/**DATE FORMATS**/
+const val DATE_MASK_DATE_FORMAT_WITHOUT_SLASH = "MMDDYYYY"
+const val DATE_MASK_MIN_MONTH_INDEX = 1
+const val DATE_MASK_MAX_MONTH_INDEX = 12
+const val DATE_MASK_MIN_YEAR = 1900
+const val DATE_MASK_MAX_YEAR = 2100
+const val DATE_MASK_LOOP_STEP = 2
+const val DATE_MASK_LENGTH = 8
+const val DATE_MASK_DAY_INITIAL_INDEX = 2
+const val DATE_MASK_DAY_FINAL_INDEX = 4
+const val DATE_MASK_MONTH_INITIAL_INDEX = 0
+const val DATE_MASK_MONTH_FINAL_INDEX = 2
+const val DATE_MASK_YEAR_INITIAL_INDEX = 4
+const val DATE_MASK_YEAR_FINAL_INDEX = 8
+const val DATE_MASK_SELECTION_MIN_INDEX = 0
+const val DATE_MASK_MONTH_INDEX_DEFAULT_AGGREGATOR_VALUE = 1
+const val DATE_MASK_JUST_DIGITS_LENGTH = 6
+const val DATE_MASK_DIGITS_STRING_FORMAT = "%02d%02d%02d"
+const val DATE_MASK_MAX_EMS = 10
+const val DEFAULT_DATE_FORMAT = "MM/dd/yyyy"
+const val HEALTH_PROVIDER_MINIMUM_NUMBER_OF_DAYS_TO_RENEW_VACCINES_ = 30
+const val RESPONSE_DATE_FORMAT = "yyyy-MM-dd"
+const val DATE_FORMAT_EXPIRATION_DATE = "LLLL yyyy"
+const val DATE_FORMAT_EXPIRATION_DATE_OCR = "MM/yyyy"

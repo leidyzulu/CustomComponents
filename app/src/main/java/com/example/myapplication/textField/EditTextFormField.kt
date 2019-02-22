@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.design.widget.TextInputLayout
 import android.util.AttributeSet
 import android.widget.EditText
+import com.evercheck.wallet.utils.masks.DateTextWatcherMask
 import com.example.myapplication.*
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.*
@@ -14,7 +15,7 @@ class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
     TextInputLayout(context, attrs), ITextFormField {
 
 
-    var mRegex: Int? = null
+    var mTypeField: Int? = null
     var mEditText: EditText? = null
 
     init {
@@ -24,7 +25,7 @@ class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
             0, 0
         ).apply {
             try {
-                mRegex = getInt(R.styleable.EditTextFormField_regex, -1)
+                mTypeField = getInt(R.styleable.EditTextFormField_regex, -1)
             } finally {
                 recycle()
             }
@@ -38,27 +39,25 @@ class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
         mEditText = this.editText
 
 
-        if (mRegex == OPTION_PHONE) {
-            mEditText?.apply {
+        when (mTypeField) {
+            OPTION_PHONE -> mEditText?.apply {
                 addTextChangedListener(PhoneNumberTextWatcherMask(this))
+            }
+            OPTION_DATE -> mEditText?.apply {
+                addTextChangedListener(DateTextWatcherMask(this))
             }
         }
 
     }
 
     override fun isValid(): ValidationResult {
-        mRegex
-        this.editText
+
         return when {
             mEditText?.text.toString().isEmpty() -> ValidationResult(
                 false,
                 VALIDATE_EMPTY
             )
-            mEditText?.text.toString().count() != MAX_LENGHT -> ValidationResult(
-                false,
-                VALIDATE_LENGTH
-            )
-            !mEditText?.text.toString().isNumeric() -> ValidationResult(
+            !ValidatorHelper.isValidPhone(mEditText?.text) -> ValidationResult(
                 false,
                 VALIDATE_NUMERIC
             )
