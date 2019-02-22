@@ -26,6 +26,8 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
     override fun onFinishInflate() {
         super.onFinishInflate()
 
+        mEditText = this.editText
+
          this.editText?.apply {
              addTextChangedListener(PhoneNumberTextWatcherMask(this))
          }

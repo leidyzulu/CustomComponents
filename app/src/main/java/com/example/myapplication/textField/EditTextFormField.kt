@@ -14,14 +14,9 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
 
 
     protected var mRegex: String? = null
-    private var mEditText: EditText? = null
+    protected var mEditText: EditText? = null
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
 
-        mEditText = this.editText
-
-    }
 
     override fun isValid(): ValidationResult {
 
