@@ -24,29 +24,33 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
                 recycle()
             }
         }
-
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
 
         mEditText = this.editText
+        setMaxLength()
+        setMaskPhone()
+
+    }
+
+    private fun setMaskPhone() {
+        this.editText?.apply {
+            addTextChangedListener(PhoneNumberTextWatcherMask(this))
+        }
+    }
+
+    private fun setMaxLength() {
         val filterArray = arrayOfNulls<InputFilter>(1)
         filterArray[0] = InputFilter.LengthFilter(MAX_LENGHT)
         mEditText?.filters = filterArray
-
-         this.editText?.apply {
-             addTextChangedListener(PhoneNumberTextWatcherMask(this))
-         }
-
     }
 
 
     override fun getMessage(): ValidationResult {
-       return ValidationResult(false, VALIDATE_LENGTH)
+        return ValidationResult(false, VALIDATE_LENGTH)
     }
-
-
 
 
 }
