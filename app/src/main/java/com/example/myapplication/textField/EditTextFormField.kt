@@ -25,7 +25,7 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
                 false,
                 VALIDATE_EMPTY
             )
-            !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getErrorMessage()
+            !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getMessage()
 
             else -> ValidationResult(true, EMPTY)
         }
@@ -41,6 +41,6 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
         this.error = EMPTY
     }
 
-    abstract fun getErrorMessage(): ValidationResult
+    abstract fun getMessage(): ValidationResult
 
 }

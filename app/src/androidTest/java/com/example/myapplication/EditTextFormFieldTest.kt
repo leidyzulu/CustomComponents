@@ -12,6 +12,7 @@ import android.view.View
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY
+import com.example.myapplication.helper.VALIDATE_LENGTH
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -54,6 +55,15 @@ class EditTextFormFieldTest {
     }
 
     @Test
+    fun shouldShowAndErrorWithLessDigits() {
+        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(typeText("123456"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_LENGTH),
+            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
     fun shouldShowError() {
         ruleActivity.runOnUiThread {
             (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.showError(VALIDATE_EMPTY)
@@ -62,21 +72,21 @@ class EditTextFormFieldTest {
     }
 
 
-    fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
-        return object : TypeSafeMatcher<View>() {
-            protected override fun matchesSafely(view: View): Boolean {
-                if (view !is TextInputLayout) {
-                    return false
-                }
-
-                val error = view.error ?: return false
-
-                return expectedErrorText.equals(error.toString())
-            }
-
-            override fun describeTo(description: Description) {
-
-            }
-        }
-    }
+//    fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
+//        return object : TypeSafeMatcher<View>() {
+//            protected override fun matchesSafely(view: View): Boolean {
+//                if (view !is TextInputLayout) {
+//                    return false
+//                }
+//
+//                val error = view.error ?: return false
+//
+//                return expectedErrorText.equals(error.toString())
+//            }
+//
+//            override fun describeTo(description: Description) {
+//
+//            }
+//        }
+//    }
 }
