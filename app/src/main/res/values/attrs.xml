@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <declare-styleable name="TextFormField">
+    <declare-styleable name="EditTextFormField">
         <attr name="regex">
             <enum name="phone" value="0"/>
             <enum name="email" value="1"/>

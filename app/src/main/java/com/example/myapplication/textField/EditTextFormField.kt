@@ -3,7 +3,6 @@ package com.example.myapplication.textField
 import android.content.Context
 import android.support.design.widget.TextInputLayout
 import android.util.AttributeSet
-import android.view.View
 import android.widget.EditText
 import com.example.myapplication.*
 import com.example.myapplication.formfield.ValidationResult
@@ -11,7 +10,7 @@ import com.example.myapplication.helper.*
 import com.example.myapplication.helper.masks.PhoneNumberTextWatcherMask
 
 
-class TextFormField constructor(context: Context, attrs: AttributeSet) :
+class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
     TextInputLayout(context, attrs), ITextFormField {
 
 
@@ -21,11 +20,11 @@ class TextFormField constructor(context: Context, attrs: AttributeSet) :
     init {
         context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.TextFormField,
+            R.styleable.EditTextFormField,
             0, 0
         ).apply {
             try {
-                mRegex = getInt(R.styleable.TextFormField_regex, -1)
+                mRegex = getInt(R.styleable.EditTextFormField_regex, -1)
             } finally {
                 recycle()
             }

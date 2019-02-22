@@ -2,8 +2,6 @@ package com.example.myapplication
 
 import android.support.design.widget.TextInputLayout
 import android.support.test.espresso.Espresso
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
@@ -11,21 +9,16 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY
-import org.hamcrest.Matchers.allOf
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import android.support.annotation.NonNull
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
 
 
@@ -35,7 +28,7 @@ import org.hamcrest.TypeSafeMatcher
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class TextFormFieldTest {
+class EditTextFormFieldTest {
 
 
     @get:Rule
