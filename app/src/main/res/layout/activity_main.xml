@@ -9,7 +9,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <com.example.myapplication.textField.EditTextFormField
+    <com.example.myapplication.textField.EditTextPhoneField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tvPhone"
@@ -28,9 +28,9 @@
                 android:layout_height="wrap_content"/>
 
 
-    </com.example.myapplication.textField.EditTextFormField>
+    </com.example.myapplication.textField.EditTextPhoneField>
 
-    <com.example.myapplication.textField.EditTextFormField
+    <com.example.myapplication.textField.EditTextPhoneField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"/>
 
 
-    </com.example.myapplication.textField.EditTextFormField>
+    </com.example.myapplication.textField.EditTextPhoneField>
 
     <Button
             android:id="@+id/btnRun"

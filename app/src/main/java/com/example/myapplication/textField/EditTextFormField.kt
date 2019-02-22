@@ -2,7 +2,6 @@ package com.example.myapplication.textField
 
 import android.content.Context
 import android.support.design.widget.TextInputLayout
-import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.EditText
 import com.example.myapplication.formfield.ValidationResult
