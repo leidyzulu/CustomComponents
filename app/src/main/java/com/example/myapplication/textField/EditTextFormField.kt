@@ -20,15 +20,19 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
 
     override fun isValid(): ValidationResult {
 
-        return when {
-            mEditText?.text.toString().isEmpty() -> ValidationResult(
-                false,
-                VALIDATE_EMPTY
-            )
-            !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getMessage()
+            if (mEditText?.text.toString().isEmpty()){
+                return ValidationResult(
+                    false,
+                    VALIDATE_EMPTY
+                )
+            } else if ( mRegex != null){
+                if (!Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches()){
+                    return getMessage()
+                }
+            }else {
+               return ValidationResult(true, EMPTY)
+            }
 
-            else -> ValidationResult(true, EMPTY)
-        }
     }
 
     override fun showError(message: String) {

@@ -7,6 +7,7 @@ import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_LENGTH
 import com.example.myapplication.helper.masks.PhoneNumberTextWatcherMask
 import android.text.InputFilter
+import android.text.InputType
 import com.example.myapplication.helper.MAX_LENGHT
 
 
@@ -30,9 +31,14 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         super.onFinishInflate()
 
         mEditText = this.editText
+        setInputType()
         setMaxLength()
         setMaskPhone()
 
+    }
+
+    private fun setInputType(){
+        mEditText?.inputType = InputType.TYPE_CLASS_PHONE
     }
 
     private fun setMaskPhone() {

@@ -3,6 +3,7 @@ package com.example.myapplication.helper
 const val VALIDATE_EMPTY = "This field must not be empty"
 const val VALIDATE_NUMERIC = "This field must be numeric"
 const val VALIDATE_LENGTH = "This field must have ten digits."
+const val VALIDATE_EMAIL = "Email incorrect."
 const val EMPTY = ""
 const val MAX_LENGHT = 12
 
