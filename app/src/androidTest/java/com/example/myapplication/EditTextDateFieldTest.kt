@@ -5,7 +5,7 @@ import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.view.View
-import com.example.myapplication.formfield.IFormField
+import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_DATE
 import org.junit.Assert
@@ -31,7 +31,7 @@ class EditTextDateFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("11/DD/2019"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
         )
     }
 
@@ -40,7 +40,7 @@ class EditTextDateFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("M1/01/2019"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
         )
     }
 
@@ -49,7 +49,7 @@ class EditTextDateFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("12/01/2YY9"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
         )
     }
 
@@ -58,7 +58,7 @@ class EditTextDateFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.replaceText("MM/DD/YYYY"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
         )
     }
 }
