@@ -4,6 +4,7 @@ const val VALIDATE_EMPTY = "This field must not be empty"
 const val VALIDATE_NUMERIC = "This field must be numeric"
 const val VALIDATE_LENGTH = "This field must have ten digits."
 const val VALIDATE_EMAIL = "Email incorrect."
+const val VALIDATE_DATE = "Date incorrect."
 const val EMPTY = ""
 const val MAX_LENGHT = 12
 
@@ -49,3 +50,7 @@ const val HEALTH_PROVIDER_MINIMUM_NUMBER_OF_DAYS_TO_RENEW_VACCINES_ = 30
 const val RESPONSE_DATE_FORMAT = "yyyy-MM-dd"
 const val DATE_FORMAT_EXPIRATION_DATE = "LLLL yyyy"
 const val DATE_FORMAT_EXPIRATION_DATE_OCR = "MM/yyyy"
+const val COMPOUND_DRAWABLE_POSITION_ARRAY_SIZE = 2
+const val DATE_EDIT_TEXT_RIGHT_COMPOUND_DRAWABLE_POSITION = 0
+const val DRAWABLE_RIGHT_POSITION = 2
+const val COMPOUND_DRAWABLE_TOUCH_OFF_SET = 32

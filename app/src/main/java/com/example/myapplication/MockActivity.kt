@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.myapplication.helper.DATE_REGEX
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -15,6 +16,7 @@ class MockActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
+        tlDate.setRegex(DATE_REGEX)
     }
 
     companion object {

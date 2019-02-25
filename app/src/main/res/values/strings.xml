@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="regex_phone">\\\d{3}-\\\d{3}-\\\d{4}</string>
-    <string name="regex_email">        </string>
+    <string name="show_date_format">MM/dd/yyyy</string>
+
 </resources>

@@ -22,15 +22,24 @@ class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcher 
 
     override fun afterTextChanged(s: Editable?) {
         s?.let { text ->
-            if (text.length == PHONE_NUMBER_FORMAT_FIRST_NUMBER_AFTER_HYPHEN_INDEX &&
-                    text.count { it.toString() == HYPHEN } == PHONE_NUMBER_FORMAT_NO_HYPHEN_COUNT) {
-                text.insert(PHONE_NUMBER_FORMAT_FIRST_HYPHEN_INDEX, HYPHEN)
+            mReceiver.removeTextChangedListener(this)
+            var resultado = s.toString().replace("_", "")
+
+            when (resultado.length) {
+                in 0..3 -> {
+                    resultado = resultado.replaceFirst("(\\d{3})".toRegex(), "$1")
+                }
+                in 4..6 -> {
+                    resultado = resultado.replaceFirst("(\\d{3})(\\d{0,3})".toRegex(), "$1-$2")
+                }
+                in 7..10 -> {
+                    resultado = resultado.replaceFirst("(\\d{3})(\\d{3})(\\d{0,4})".toRegex(), "$1-$2-$3")
+                }
             }
 
-            if (text.length == PHONE_NUMBER_FORMAT_SECOND_NUMBER_AFTER_HYPHEN_INDEX &&
-                    text.count { it.toString() == HYPHEN } == PHONE_NUMBER_FORMAT_ONE_HYPHEN_COUNT) {
-                text.insert(PHONE_NUMBER_FORMAT_SECOND_HYPHEN_INDEX, HYPHEN)
-            }
+            s.replace(0, s.length, resultado)
+
+            mReceiver.addTextChangedListener(this)
         }
     }
 

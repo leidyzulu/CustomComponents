@@ -23,36 +23,18 @@
         <EditText
                 android:layout_width="match_parent"
                 android:hint="Teléfono"
+                android:digits="0123456789-"
                 android:id="@+id/etPhone"
                 android:layout_height="wrap_content"/>
 
 
     </com.example.myapplication.textField.EditTextPhoneField>
 
-    <com.example.myapplication.textField.EditTextPhoneField
-            android:layout_width="253dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        <EditText
-                android:id="@+id/etphone2"
-                android:layout_width="match_parent"
-                android:hint="Teléfono1"
-                android:layout_height="wrap_content"/>
-
-
-    </com.example.myapplication.textField.EditTextPhoneField>
 
     <com.example.myapplication.textField.EditTextEmailField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tlEmail"
-            app:regex="@string/regex_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -67,6 +49,26 @@
 
 
     </com.example.myapplication.textField.EditTextEmailField>
+
+
+    <com.example.myapplication.textField.EditTextDateField
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tlDate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:hint="email"
+                android:layout_height="wrap_content"/>
+
+
+    </com.example.myapplication.textField.EditTextDateField>
 
     <Button
             android:id="@+id/btnRun"

@@ -11,6 +11,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.formfield.ValidationResult
+import com.example.myapplication.helper.VALIDATE_DATE
 import com.example.myapplication.helper.VALIDATE_EMAIL
 import com.example.myapplication.helper.VALIDATE_EMPTY
 import com.example.myapplication.helper.VALIDATE_LENGTH
@@ -38,6 +39,7 @@ class EditTextFormFieldTest {
         MockActivity.layout = R.layout.activity_main
     }
 
+    @Ignore
     @Test
     fun shouldFormatPhoneNumber() {
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(typeText("1234567890"))
@@ -95,6 +97,42 @@ class EditTextFormFieldTest {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
             (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheDateIncorrectPart1(){
+        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("11/DD/2019"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_DATE),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheDateIncorrectPart2(){
+        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("M1/01/2019"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_DATE),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheDateIncorrectPart3(){
+        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("12/01/2YY9"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_DATE),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheDateIncorrectPart4(){
+        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(replaceText("MM/DD/YYYY"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_DATE),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
         )
     }
 

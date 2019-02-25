@@ -35,6 +35,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         setMaxLength()
         setMaskPhone()
 
+
     }
 
     private fun setInputType(){
