@@ -13,20 +13,6 @@ import com.example.myapplication.helper.*
 
 class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs) {
 
-    init {
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.EditTextFormField,
-            DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
-        ).apply {
-            try {
-                mRegex = getString(R.styleable.EditTextFormField_regex)
-            } finally {
-                recycle()
-            }
-        }
-    }
-
     override fun onFinishInflate() {
         super.onFinishInflate()
 
@@ -35,6 +21,10 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         setMaxLength()
         setPhoneMask()
         setDigits()
+    }
+
+    fun setRegex(regex: String){
+        mRegex = regex
     }
 
     private fun setDigits() {

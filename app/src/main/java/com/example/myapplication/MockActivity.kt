@@ -15,9 +15,7 @@ class MockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         tlDate.setRegex(DATE_REGEX)
-        tlCurrency.setRegex(DATE_REGEX)
     }
 
     companion object {

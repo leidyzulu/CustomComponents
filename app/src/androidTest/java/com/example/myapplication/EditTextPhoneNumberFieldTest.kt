@@ -6,8 +6,11 @@ import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.view.View
+import com.example.myapplication.customedittext.EditTextDateField
+import com.example.myapplication.customedittext.EditTextPhoneField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
+import com.example.myapplication.helper.PHONE_NUMBER_REGEX
 import com.example.myapplication.helper.VALIDATE_EMPTY
 import com.example.myapplication.helper.VALIDATE_LENGTH
 import org.junit.Assert
@@ -32,12 +35,14 @@ class EditTextPhoneNumberFieldTest {
     fun shouldShowAndErrorWithEmptyText() {
         //Given
         val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? EditTextPhoneField)
         val resultIsValid : ValidationResult?
 
         //When
         resultIsValid = field?.isValid()
 
         //Then
+        txtInputLayout?.setRegex(PHONE_NUMBER_REGEX)
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),resultIsValid
 
@@ -49,8 +54,10 @@ class EditTextPhoneNumberFieldTest {
         //Given
         val phone = "123456"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? EditTextPhoneField)
 
         //When
+        txtInputLayout?.setRegex(PHONE_NUMBER_REGEX)
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText(phone))
 
         //Then

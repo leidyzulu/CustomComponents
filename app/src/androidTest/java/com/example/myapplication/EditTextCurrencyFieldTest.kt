@@ -6,6 +6,7 @@ import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.view.View
+import com.example.myapplication.customedittext.EditTextEmailField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY
@@ -29,12 +30,10 @@ class EditTextCurrencyFieldTest {
         )
     }
 
-    @Ignore
     @Test
     fun shouldFormatCurrency() {
         Espresso.onView(ViewMatchers.withId(R.id.etCurrency)).perform(ViewActions.typeText("22222"))
             .check(ViewAssertions.matches(ViewMatchers.withText("$22,222")))
     }
-
 
 }

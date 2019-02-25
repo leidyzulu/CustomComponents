@@ -24,6 +24,7 @@ const val HYPHEN = "-"
 const val OPTION_PHONE = 0
 const val OPTION_EMAIL = 1
 const val OPTION_DATE = 2
+const val PHONE_NUMBER_REGEX = "\\d{3}-\\d{3}-\\d{4}"
 const val NO_DIGITS_REGEX = "[^\\d.]|\\."
 const val DATE_REGEX = "\\d{2}\\/\\d{2}\\/\\d{4}"
 const val SLASH = "/"

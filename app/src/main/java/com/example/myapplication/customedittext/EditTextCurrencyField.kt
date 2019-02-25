@@ -16,11 +16,6 @@ class EditTextCurrencyField(context: Context, attrs: AttributeSet) : EditTextFor
         setMaskCurrency()
     }
 
-    fun setRegex(regex: String) {
-        mRegex = regex
-    }
-
-
     private fun setMaskCurrency() {
         this.editText?.apply {
             addTextChangedListener(PriceTextWatcherMask(this))

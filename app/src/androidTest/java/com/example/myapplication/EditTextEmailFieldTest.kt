@@ -9,6 +9,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
+import com.example.myapplication.customedittext.EditTextEmailField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.*
@@ -22,7 +23,7 @@ import org.junit.*
  * @author Oscar Gallon on 2/25/19.
  */
 @RunWith(AndroidJUnit4::class)
-class EmailEditTextFormFieldTest {
+class EditTextEmailFieldTest {
 
 
     @get:Rule
@@ -32,6 +33,7 @@ class EmailEditTextFormFieldTest {
     fun setup() {
         MockActivity.layout = R.layout.activity_main
     }
+
 
     @Test
     fun shouldShowAndErrorWithEmptyEmail() {
@@ -46,8 +48,10 @@ class EmailEditTextFormFieldTest {
         //Given
         val text = "kdfkd"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
 
         //When
+        txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
 
         //Then
@@ -62,8 +66,10 @@ class EmailEditTextFormFieldTest {
         //Given
         val text = "kdfkd@"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
 
         //When
+        txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
 
         //Then
@@ -78,8 +84,10 @@ class EmailEditTextFormFieldTest {
         //Given
         val text = "kdfkd@smdms"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
 
         //When
+        txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
 
         //Then
@@ -94,8 +102,10 @@ class EmailEditTextFormFieldTest {
         //Given
         val text = "kdfkd@smdms."
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
 
         //When
+        txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
 
         //Then
@@ -109,8 +119,10 @@ class EmailEditTextFormFieldTest {
         //Given
         val text = "o@gmail.co"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+        val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
 
         //When
+        txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
 
         //Then
