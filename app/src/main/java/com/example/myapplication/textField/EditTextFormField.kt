@@ -8,15 +8,12 @@ import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.*
 import java.util.regex.Pattern
 
-
 abstract class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
     TextInputLayout(context, attrs), ITextFormField {
 
 
     protected var mRegex: String? = null
     protected var mEditText: EditText? = null
-
-
 
     override fun isValid(): ValidationResult {
 

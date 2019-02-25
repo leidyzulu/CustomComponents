@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <declare-styleable name="EditTextFormField">
         <attr name="regex" format="string"/>
     </declare-styleable>
+
+
+    <declare-styleable name="EditTextDateField">
+        <attr name="picker_icon" format="integer"/>
+    </declare-styleable>
+
 </resources>

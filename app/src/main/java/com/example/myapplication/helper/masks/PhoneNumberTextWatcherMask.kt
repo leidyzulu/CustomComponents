@@ -1,24 +1,11 @@
 package com.example.myapplication.helper.masks
 
 import android.text.Editable
-import android.text.TextWatcher
-import android.view.KeyEvent
 import android.widget.EditText
 import com.example.myapplication.helper.*
 
-class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcher {
+class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcherAdapter() {
 
-    private var mIsDeleting = false
-
-    init {
-        mReceiver.setOnKeyListener { _, keyCode, _ ->
-            mIsDeleting = when (keyCode) {
-                KeyEvent.KEYCODE_DEL -> true
-                else -> false
-            }
-            false
-        }
-    }
 
     override fun afterTextChanged(s: Editable?) {
         s?.let { text ->
@@ -54,14 +41,7 @@ class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcher 
         }
     }
 
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-    }
-
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (mIsDeleting) {
-            mIsDeleting = false
-            return
-        }
 
         s?.let {
             if ((it.length == PHONE_NUMBER_FORMAT_FIRST_HYPHEN_INDEX ||

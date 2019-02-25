@@ -23,7 +23,6 @@
         <EditText
                 android:layout_width="match_parent"
                 android:hint="Teléfono"
-                android:digits="0123456789-"
                 android:id="@+id/etPhone"
                 android:layout_height="wrap_content"/>
 
@@ -55,6 +54,7 @@
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tlDate"
+            app:picker_icon="@drawable/ic_date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -64,7 +64,7 @@
         <EditText
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
-                android:hint="email"
+                android:hint="date"
                 android:layout_height="wrap_content"/>
 
 

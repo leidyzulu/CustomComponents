@@ -8,7 +8,6 @@ import com.example.myapplication.helper.VALIDATE_EMAIL
 
 class EditTextEmailField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs) {
 
-
     fun setRegex(regex: String) {
         mRegex = regex
     }
