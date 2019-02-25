@@ -20,19 +20,18 @@ import org.junit.Test
 /**
  * @author Oscar Gallon on 2/25/19.
  */
-class EditTextPhoneNumberFieldTest {
-
-    @get:Rule
-    val ruleActivity = ActivityTestRule(MockActivity::class.java)
+class EditTextPhoneNumberFieldTest : MockActivityTest() {
 
     @Test
     fun shouldFormatPhoneNumber() {
+        restartActivity()
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText("1234567890"))
             .check(ViewAssertions.matches(ViewMatchers.withText("123-456-7890")))
     }
 
     @Test
     fun shouldShowAndErrorWithEmptyText() {
+        restartActivity()
         //Given
         val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? EditTextPhoneField)
@@ -51,6 +50,7 @@ class EditTextPhoneNumberFieldTest {
 
     @Test
     fun shouldShowAndErrorWithLessDigits() {
+        restartActivity()
         //Given
         val phone = "123456"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)

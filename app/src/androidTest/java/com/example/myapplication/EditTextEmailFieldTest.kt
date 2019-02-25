@@ -23,11 +23,8 @@ import org.junit.*
  * @author Oscar Gallon on 2/25/19.
  */
 @RunWith(AndroidJUnit4::class)
-class EditTextEmailFieldTest {
-
-
-    @get:Rule
-    val ruleActivity = ActivityTestRule(MockActivity::class.java)
+class EditTextEmailFieldTest : MockActivityTest()
+{
 
     @Before
     fun setup() {
@@ -37,6 +34,7 @@ class EditTextEmailFieldTest {
 
     @Test
     fun shouldShowAndErrorWithEmptyEmail() {
+        restartActivity()
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
             (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
@@ -45,6 +43,7 @@ class EditTextEmailFieldTest {
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart1() {
+        restartActivity()
         //Given
         val text = "kdfkd"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
@@ -63,6 +62,7 @@ class EditTextEmailFieldTest {
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart2() {
+        restartActivity()
         //Given
         val text = "kdfkd@"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
@@ -81,6 +81,7 @@ class EditTextEmailFieldTest {
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart3() {
+        restartActivity()
         //Given
         val text = "kdfkd@smdms"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
@@ -99,6 +100,7 @@ class EditTextEmailFieldTest {
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart4() {
+        restartActivity()
         //Given
         val text = "kdfkd@smdms."
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
@@ -116,6 +118,7 @@ class EditTextEmailFieldTest {
     }
 
     fun shouldMatch() {
+        restartActivity()
         //Given
         val text = "o@gmail.co"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
