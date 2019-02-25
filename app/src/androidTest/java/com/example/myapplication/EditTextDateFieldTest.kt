@@ -175,6 +175,7 @@ class EditTextDateFieldTest : MockActivityTest() {
 
     @Test
     fun shouldShowAndErrorWithEmptyDate() {
+        restartActivity()
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
