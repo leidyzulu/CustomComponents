@@ -6,7 +6,7 @@ import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.view.View
-import com.example.myapplication.formfield.IFormField
+import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY
 import com.example.myapplication.helper.VALIDATE_LENGTH
@@ -32,7 +32,7 @@ class EditTextPhoneNumberFieldTest {
     fun shouldShowAndErrorWithEmptyText() {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.isValid()
         )
     }
 
@@ -41,7 +41,7 @@ class EditTextPhoneNumberFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText("123456"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_LENGTH),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.isValid()
         )
     }
 }

@@ -14,6 +14,8 @@ import com.example.myapplication.R
 import com.example.myapplication.helper.masks.DateTextWatcherMask
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.*
+import java.lang.Exception
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -78,8 +80,33 @@ class EditTextDateField(context: Context, attrs: AttributeSet) : EditTextFormFie
         mLowerLimit = limit
     }
 
+    fun setLowerLimit(limit: String, format: String = context.getString(R.string.show_date_format)) {
+        try {
+            mLowerLimit = parseDate(format, limit)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun setUpperLimit(limit: Long) {
         mUpperLimit = limit
+    }
+
+    fun setUpperLimit(limit: String, format: String = context.getString(R.string.show_date_format)) {
+        try {
+            mUpperLimit = parseDate(format, limit)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun getLowerLimit(): Long? = mLowerLimit
+
+    fun getUpperLimit(): Long? = mUpperLimit
+
+    @Throws(ParseException::class)
+    private fun parseDate(format: String, candidate: String): Long {
+        return SimpleDateFormat(format, Locale.getDefault()).parse(candidate).time
     }
 
     private fun setupPicker() {

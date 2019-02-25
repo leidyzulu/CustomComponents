@@ -9,7 +9,7 @@ import com.example.myapplication.helper.*
 import java.util.regex.Pattern
 
 abstract class EditTextFormField constructor(context: Context, attrs: AttributeSet) :
-    TextInputLayout(context, attrs), ITextFormField {
+    TextInputLayout(context, attrs), TextFormField {
 
 
     protected var mRegex: String? = null

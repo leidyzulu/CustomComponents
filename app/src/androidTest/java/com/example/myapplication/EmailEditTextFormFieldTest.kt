@@ -9,7 +9,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
-import com.example.myapplication.formfield.IFormField
+import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.*
 import org.junit.runner.RunWith
@@ -18,11 +18,8 @@ import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import org.junit.*
 
-
 /**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * @author Oscar Gallon on 2/25/19.
  */
 @RunWith(AndroidJUnit4::class)
 class EmailEditTextFormFieldTest {
@@ -50,7 +47,7 @@ class EmailEditTextFormFieldTest {
         Thread.sleep(1000)
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
@@ -59,7 +56,7 @@ class EmailEditTextFormFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
@@ -68,7 +65,7 @@ class EmailEditTextFormFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
@@ -77,7 +74,7 @@ class EmailEditTextFormFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms."))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
@@ -85,7 +82,7 @@ class EmailEditTextFormFieldTest {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("o@gmail.co"))
         Assert.assertEquals(
             ValidationResult(true, EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
@@ -94,7 +91,7 @@ class EmailEditTextFormFieldTest {
     @Test
     fun shouldShowError() {
         ruleActivity.runOnUiThread {
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.showError(VALIDATE_EMPTY)
+            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.showError(VALIDATE_EMPTY)
         }
         Espresso.onView(withId(R.id.tvPhone)).check(matches(hasErrorText(VALIDATE_EMPTY)))
     }
