@@ -11,16 +11,14 @@ import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.formfield.ValidationResult
+import com.example.myapplication.helper.VALIDATE_EMAIL
 import com.example.myapplication.helper.VALIDATE_EMPTY
 import com.example.myapplication.helper.VALIDATE_LENGTH
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import org.junit.*
 
 
 /**
@@ -64,6 +62,45 @@ class EditTextFormFieldTest {
     }
 
     @Test
+    fun shouldShowErrorWitheEmailIncorrectPart1(){
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd"))
+        Thread.sleep(1000)
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMAIL),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheEmailIncorrectPart2(){
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMAIL),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheEmailIncorrectPart3(){
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms"))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMAIL),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheEmailIncorrectPart4(){
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms."))
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMAIL),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+
+    @Ignore
+    @Test
     fun shouldShowError() {
         ruleActivity.runOnUiThread {
             (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.showError(VALIDATE_EMPTY)
@@ -72,21 +109,21 @@ class EditTextFormFieldTest {
     }
 
 
-//    fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
-//        return object : TypeSafeMatcher<View>() {
-//            protected override fun matchesSafely(view: View): Boolean {
-//                if (view !is TextInputLayout) {
-//                    return false
-//                }
-//
-//                val error = view.error ?: return false
-//
-//                return expectedErrorText.equals(error.toString())
-//            }
-//
-//            override fun describeTo(description: Description) {
-//
-//            }
-//        }
-//    }
+    fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+             override fun matchesSafely(view: View): Boolean {
+                if (view !is TextInputLayout) {
+                    return false
+                }
+
+                val error = view.error ?: return false
+
+                return expectedErrorText.equals(error.toString())
+            }
+
+            override fun describeTo(description: Description) {
+
+            }
+        }
+    }
 }
