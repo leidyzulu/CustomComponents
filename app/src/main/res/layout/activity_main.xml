@@ -9,7 +9,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <com.example.myapplication.textField.EditTextPhoneField
+    <com.example.myapplication.customedittext.EditTextPhoneField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tvPhone"
@@ -27,10 +27,10 @@
                 android:layout_height="wrap_content"/>
 
 
-    </com.example.myapplication.textField.EditTextPhoneField>
+    </com.example.myapplication.customedittext.EditTextPhoneField>
 
 
-    <com.example.myapplication.textField.EditTextEmailField
+    <com.example.myapplication.customedittext.EditTextEmailField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tlEmail"
@@ -47,10 +47,10 @@
                 android:layout_height="wrap_content"/>
 
 
-    </com.example.myapplication.textField.EditTextEmailField>
+    </com.example.myapplication.customedittext.EditTextEmailField>
 
 
-    <com.example.myapplication.textField.EditTextDateField
+    <com.example.myapplication.customedittext.EditTextDateField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tlDate"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"/>
 
 
-    </com.example.myapplication.textField.EditTextDateField>
+    </com.example.myapplication.customedittext.EditTextDateField>
 
     <Button
             android:id="@+id/btnRun"

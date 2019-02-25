@@ -1,4 +1,4 @@
-package com.example.myapplication.textField
+package com.example.myapplication.customedittext
 
 import android.content.Context
 import android.support.design.widget.TextInputLayout
