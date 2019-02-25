@@ -69,6 +69,25 @@
 
     </com.example.myapplication.customedittext.EditTextDateField>
 
+    <com.example.myapplication.customedittext.EditTextCurrencyField
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tlCurrency"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+                android:id="@+id/etCurrency"
+                android:layout_width="match_parent"
+                android:hint="currency"
+                android:layout_height="wrap_content"/>
+
+
+    </com.example.myapplication.customedittext.EditTextCurrencyField>
+
     <Button
             android:id="@+id/btnRun"
             android:layout_width="wrap_content"

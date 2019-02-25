@@ -46,7 +46,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowAndErrorWithEmptyText() {
+    fun shouldShowAndErrorWithEmptyPhone() {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
             (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
@@ -63,7 +63,15 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheEmailIncorrectPart1(){
+    fun shouldShowAndErrorWithEmptyEmail() {
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMPTY),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheEmailIncorrectPart1() {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd"))
         Thread.sleep(1000)
         Assert.assertEquals(
@@ -73,7 +81,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheEmailIncorrectPart2(){
+    fun shouldShowErrorWitheEmailIncorrectPart2() {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
@@ -82,7 +90,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheEmailIncorrectPart3(){
+    fun shouldShowErrorWitheEmailIncorrectPart3() {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
@@ -91,7 +99,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheEmailIncorrectPart4(){
+    fun shouldShowErrorWitheEmailIncorrectPart4() {
         Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms."))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
@@ -100,7 +108,15 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheDateIncorrectPart1(){
+    fun shouldShowAndErrorWithEmptyDate() {
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMPTY),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldShowErrorWitheDateIncorrectPart1() {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("11/DD/2019"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
@@ -109,7 +125,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheDateIncorrectPart2(){
+    fun shouldShowErrorWitheDateIncorrectPart2() {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("M1/01/2019"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
@@ -118,7 +134,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheDateIncorrectPart3(){
+    fun shouldShowErrorWitheDateIncorrectPart3() {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("12/01/2YY9"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
@@ -127,7 +143,7 @@ class EditTextFormFieldTest {
     }
 
     @Test
-    fun shouldShowErrorWitheDateIncorrectPart4(){
+    fun shouldShowErrorWitheDateIncorrectPart4() {
         Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(replaceText("MM/DD/YYYY"))
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
@@ -135,6 +151,19 @@ class EditTextFormFieldTest {
         )
     }
 
+    @Test
+    fun shouldShowAndErrorWithEmptyCurrency() {
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMPTY),
+            (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? IFormField)?.isValid()
+        )
+    }
+
+    @Test
+    fun shouldFormatCurrency() {
+        Espresso.onView(ViewMatchers.withId(R.id.etCurrency)).perform(typeText("22222"))
+            .check(matches(withText("$22,222")))
+    }
 
     @Ignore
     @Test
@@ -145,10 +174,9 @@ class EditTextFormFieldTest {
         Espresso.onView(withId(R.id.tvPhone)).check(matches(hasErrorText(VALIDATE_EMPTY)))
     }
 
-
     fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
         return object : TypeSafeMatcher<View>() {
-             override fun matchesSafely(view: View): Boolean {
+            override fun matchesSafely(view: View): Boolean {
                 if (view !is TextInputLayout) {
                     return false
                 }
