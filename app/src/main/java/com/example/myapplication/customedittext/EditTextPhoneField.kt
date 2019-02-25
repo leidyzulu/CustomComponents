@@ -4,13 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import com.example.myapplication.R
 import com.example.myapplication.formfield.ValidationResult
-import com.example.myapplication.helper.VALIDATE_LENGTH
 import com.example.myapplication.helper.masks.PhoneNumberTextWatcherMask
 import android.text.InputFilter
 import android.text.InputType
 import android.text.method.DigitsKeyListener
-import com.example.myapplication.helper.DIGITS_PHONE
-import com.example.myapplication.helper.MAX_LENGHT
+import com.example.myapplication.helper.*
 
 
 class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs) {
@@ -19,7 +17,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.EditTextFormField,
-            0, 0
+            DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
         ).apply {
             try {
                 mRegex = getString(R.styleable.EditTextFormField_regex)
@@ -35,7 +33,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         mEditText = this.editText
         setInputType()
         setMaxLength()
-        setMaskPhone()
+        setPhoneMask()
         setDigits()
     }
 
@@ -47,7 +45,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         mEditText?.inputType = InputType.TYPE_CLASS_PHONE or InputType.TYPE_CLASS_NUMBER
     }
 
-    private fun setMaskPhone() {
+    private fun setPhoneMask() {
         this.editText?.apply {
             addTextChangedListener(PhoneNumberTextWatcherMask(this))
         }
@@ -62,6 +60,4 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
     override fun getMessage(): ValidationResult {
         return ValidationResult(false, VALIDATE_LENGTH)
     }
-
-
 }

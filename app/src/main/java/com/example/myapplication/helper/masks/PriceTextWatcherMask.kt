@@ -2,11 +2,10 @@
  * Copyright (c) Evercheck 2018.
  */
 
-package com.evercheck.wallet.utils.masks
+package com.example.myapplication.helper.masks
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.EditText
+import com.example.myapplication.helper.TextWatcherAdapter
 import com.example.myapplication.helper.isNumeric
 import com.example.myapplication.helper.toDollarAmount
 import java.text.NumberFormat
@@ -15,23 +14,9 @@ import java.util.*
 /**
  * @author Oscar Gallon on 12/20/18.
  */
-class PriceTextWatcherMask(private val mReceiver: EditText) : TextWatcher {
+class PriceTextWatcherMask(private val mReceiver: EditText) : TextWatcherAdapter() {
 
     private val mFormatter = NumberFormat.getCurrencyInstance(Locale.US)
-
-    override fun afterTextChanged(s: Editable?) {
-        s?.let { text ->
-
-        }
-    }
-
-    override fun beforeTextChanged(
-            s: CharSequence?,
-            start: Int,
-            count: Int,
-            after: Int
-    ) {
-    }
 
     override fun onTextChanged(
             s: CharSequence?,

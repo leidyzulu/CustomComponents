@@ -11,10 +11,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.formfield.ValidationResult
-import com.example.myapplication.helper.VALIDATE_DATE
-import com.example.myapplication.helper.VALIDATE_EMAIL
-import com.example.myapplication.helper.VALIDATE_EMPTY
-import com.example.myapplication.helper.VALIDATE_LENGTH
+import com.example.myapplication.helper.*
 import org.junit.runner.RunWith
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -28,7 +25,7 @@ import org.junit.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class EditTextFormFieldTest {
+class EmailEditTextFormFieldTest {
 
 
     @get:Rule
@@ -37,29 +34,6 @@ class EditTextFormFieldTest {
     @Before
     fun setup() {
         MockActivity.layout = R.layout.activity_main
-    }
-
-    @Test
-    fun shouldFormatPhoneNumber() {
-        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(typeText("1234567890"))
-            .check(matches(withText("123-456-7890")))
-    }
-
-    @Test
-    fun shouldShowAndErrorWithEmptyPhone() {
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldShowAndErrorWithLessDigits() {
-        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(typeText("123456"))
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_LENGTH),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? IFormField)?.isValid()
-        )
     }
 
     @Test
@@ -107,63 +81,14 @@ class EditTextFormFieldTest {
         )
     }
 
-    @Test
-    fun shouldShowAndErrorWithEmptyDate() {
+    fun shouldMatch(){
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("o@gmail.co"))
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            ValidationResult(true, EMPTY),
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
         )
     }
 
-    @Test
-    fun shouldShowErrorWitheDateIncorrectPart1() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("11/DD/2019"))
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldShowErrorWitheDateIncorrectPart2() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("M1/01/2019"))
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldShowErrorWitheDateIncorrectPart3() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(typeText("12/01/2YY9"))
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldShowErrorWitheDateIncorrectPart4() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(replaceText("MM/DD/YYYY"))
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_DATE),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldShowAndErrorWithEmptyCurrency() {
-        Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? IFormField)?.isValid()
-        )
-    }
-
-    @Test
-    fun shouldFormatCurrency() {
-        Espresso.onView(ViewMatchers.withId(R.id.etCurrency)).perform(typeText("22222"))
-            .check(matches(withText("$22,222")))
-    }
 
     @Ignore
     @Test

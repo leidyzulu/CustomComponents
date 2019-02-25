@@ -1,24 +1,16 @@
-package com.evercheck.wallet.utils.masks
+package com.example.myapplication.helper.masks
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.EditText
 import com.example.myapplication.helper.*
 import java.util.*
 
-class DateTextWatcherMask(private val mReceiver: EditText) : TextWatcher {
+class DateTextWatcherMask(private val mReceiver: EditText) : TextWatcherAdapter() {
 
     private var mCurrentDate = EMPTY
 
     private val mFormat = DATE_MASK_DATE_FORMAT_WITHOUT_SLASH
 
     private val mCalendar = Calendar.getInstance()
-
-    override fun afterTextChanged(s: Editable?) {
-    }
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-    }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         mReceiver.removeTextChangedListener(this)
