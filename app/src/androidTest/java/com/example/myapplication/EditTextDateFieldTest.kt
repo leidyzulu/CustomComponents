@@ -3,7 +3,6 @@ package com.example.myapplication
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.rule.ActivityTestRule
 import android.view.View
 import com.example.myapplication.customedittext.EditTextDateField
 import com.example.myapplication.formfield.FormField
@@ -11,27 +10,34 @@ import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_DATE
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 /**
  * @author Oscar Gallon on 2/25/19.
  */
-class EditTextDateFieldTest {
+class EditTextDateFieldTest : MockActivityTest() {
 
-    @get:Rule
-    val ruleActivity = ActivityTestRule(MockActivity::class.java)
+    private val mDefaultDateFormat = "MM/dd/yyyy"
 
     @Before
     fun setup() {
-        MockActivity.layout = R.layout.activity_main
+        MockActivity.layout = R.layout.activity_edittextdatefield_test
     }
 
     @Test
     fun shouldShowErrorWitheDateIncorrectPart1() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("11/DD/2019"))
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+
+        //When
+        view.perform(ViewActions.typeText("11/DD/2019"))
+
+        //then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
@@ -40,7 +46,15 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldShowErrorWitheDateIncorrectPart2() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("M1/01/2019"))
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+
+        //When
+        view.perform(ViewActions.typeText("M1/01/2019"))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
@@ -49,7 +63,15 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldShowErrorWitheDateIncorrectPart3() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.typeText("12/01/2YY9"))
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+
+        //When
+        view.perform(ViewActions.typeText("12/01/2YY9"))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
@@ -58,7 +80,16 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldShowErrorWitheDateIncorrectPart4() {
-        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(ViewActions.replaceText("MM/dd/yyyy"))
+        restartActivity()
+
+        //Given
+        val view =
+            Espresso.onView(ViewMatchers.withId(R.id.etDate))
+
+        //When
+        view.perform(ViewActions.replaceText(mDefaultDateFormat))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_DATE),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
@@ -67,8 +98,10 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldParseValidLowerLimit() {
+        restartActivity()
+
         //Given
-        val format = "MM/dd/yyyy"
+        val format = mDefaultDateFormat
         val dateToParse = "02/25/2019"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)
 
@@ -85,8 +118,10 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldNotParseInvalidLowerLimit() {
+        restartActivity()
+
         //Given
-        val format = "MM/dd/yyyy"
+        val format = mDefaultDateFormat
         val dateToParse = "02/AA/2019"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)
 
@@ -101,8 +136,10 @@ class EditTextDateFieldTest {
 
     @Test
     fun shouldParseValidUpperLimit() {
+        restartActivity()
+
         //Given
-        val format = "MM/dd/yyyy"
+        val format = mDefaultDateFormat
         val dateToParse = "02/25/2019"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)
 
@@ -113,14 +150,16 @@ class EditTextDateFieldTest {
         Assert.assertEquals(
             SimpleDateFormat(format, Locale.getDefault()).parse(
                 dateToParse
-            ).time, field?.getLowerLimit()
+            ).time, field?.getUpperLimit()
         )
     }
 
     @Test
     fun shouldNotParseInvalidUpperLimit() {
+        restartActivity()
+
         //Given
-        val format = "MM/dd/yyyy"
+        val format = mDefaultDateFormat
         val dateToParse = "02/AA/2019"
         val field = (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)
 
@@ -129,7 +168,7 @@ class EditTextDateFieldTest {
 
         //Then
         Assert.assertNull(
-            field?.getLowerLimit()
+            field?.getUpperLimit()
         )
     }
 }

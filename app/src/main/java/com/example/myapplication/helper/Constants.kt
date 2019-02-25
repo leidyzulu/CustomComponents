@@ -5,6 +5,7 @@ const val VALIDATE_NUMERIC = "This field must be numeric"
 const val VALIDATE_LENGTH = "This field must have ten digits."
 const val VALIDATE_EMAIL = "Email incorrect."
 const val VALIDATE_DATE = "Date incorrect."
+const val VALIDATE_CITY_ERROR = "City must belong to the state "
 const val EMPTY = ""
 const val MAX_LENGHT = 12
 const val DIGITS_PHONE = "0123456789-"

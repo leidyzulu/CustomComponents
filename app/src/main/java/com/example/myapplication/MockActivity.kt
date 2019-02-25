@@ -13,13 +13,12 @@ class MockActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout)
 
-        tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
-        tlDate.setRegex(DATE_REGEX)
+        tlEmail?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
     }
 
     companion object {
-        var layout: Int = 0
+        var layout: Int = R.layout.activity_main
     }
 }

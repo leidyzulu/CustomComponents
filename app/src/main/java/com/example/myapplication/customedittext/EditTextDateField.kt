@@ -39,6 +39,10 @@ class EditTextDateField(context: Context, attrs: AttributeSet) : EditTextFormFie
                 recycle()
             }
         }
+
+        if (mRegex == null) {
+            mRegex = context.getString(R.string.show_date_format)
+        }
     }
 
     override fun onFinishInflate() {

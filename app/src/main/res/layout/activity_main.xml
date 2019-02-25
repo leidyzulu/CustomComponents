@@ -49,27 +49,6 @@
 
     </com.example.myapplication.customedittext.EditTextEmailField>
 
-
-    <com.example.myapplication.customedittext.EditTextDateField
-            android:layout_width="253dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tlDate"
-            app:picker_icon="@drawable/ic_date"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        <EditText
-                android:id="@+id/etDate"
-                android:layout_width="match_parent"
-                android:hint="date"
-                android:layout_height="wrap_content"/>
-
-
-    </com.example.myapplication.customedittext.EditTextDateField>
-
     <Button
             android:id="@+id/btnRun"
             android:layout_width="wrap_content"

@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
-        tlDate.setRegex(DATE_REGEX)
-
-
-
 
         btnRun.setOnClickListener {
           for (i in 0 until (llMain?.childCount ?: 0)){
