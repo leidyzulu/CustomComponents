@@ -138,7 +138,7 @@ class EditTextDateFieldTest {
     fun shouldShowAndErrorWithEmptyDate() {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
         )
     }
 

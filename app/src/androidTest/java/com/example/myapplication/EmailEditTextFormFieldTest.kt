@@ -37,52 +37,86 @@ class EmailEditTextFormFieldTest {
     fun shouldShowAndErrorWithEmptyEmail() {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart1() {
-        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd"))
-        Thread.sleep(1000)
+        //Given
+        val text = "kdfkd"
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart2() {
-        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@"))
+        //Given
+        val text = "kdfkd@"
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart3() {
-        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms"))
+        //Given
+        val text = "kdfkd@smdms"
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 
     @Test
     fun shouldShowErrorWitheEmailIncorrectPart4() {
-        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("kdfkd@smdms."))
+        //Given
+        val text = "kdfkd@smdms."
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 
-    fun shouldMatch(){
-        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText("o@gmail.co"))
+    fun shouldMatch() {
+        //Given
+        val text = "o@gmail.co"
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etEmail)).perform(typeText(text))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(true, EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 

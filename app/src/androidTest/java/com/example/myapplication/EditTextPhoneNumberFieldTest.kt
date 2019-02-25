@@ -30,18 +30,33 @@ class EditTextPhoneNumberFieldTest {
 
     @Test
     fun shouldShowAndErrorWithEmptyText() {
+        //Given
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)
+        val resultIsValid : ValidationResult?
+
+        //When
+        resultIsValid = field?.isValid()
+
+        //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.isValid()
+            ValidationResult(false, VALIDATE_EMPTY),resultIsValid
+
         )
     }
 
     @Test
     fun shouldShowAndErrorWithLessDigits() {
-        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText("123456"))
+        //Given
+        val phone = "123456"
+        val field = (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)
+
+        //When
+        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText(phone))
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_LENGTH),
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.isValid()
+            field?.isValid()
         )
     }
 }

@@ -6,7 +6,7 @@ import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.view.View
-import com.example.myapplication.formfield.IFormField
+import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY
 import org.junit.*
@@ -25,7 +25,7 @@ class EditTextCurrencyFieldTest {
     fun shouldShowAndErrorWithEmptyCurrency() {
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY),
-            (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? IFormField)?.isValid()
+            (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? FormField)?.isValid()
         )
     }
 
