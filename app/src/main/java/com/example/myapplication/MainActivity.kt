@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.ViewGroup
 import com.example.myapplication.formfield.IFormField
 import com.example.myapplication.helper.DATE_REGEX
-import com.example.myapplication.textField.EditTextEmailField
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
