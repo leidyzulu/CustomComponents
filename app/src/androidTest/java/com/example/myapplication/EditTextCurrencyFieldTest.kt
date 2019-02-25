@@ -30,6 +30,7 @@ class EditTextCurrencyFieldTest {
         )
     }
 
+    @Ignore
     @Test
     fun shouldFormatCurrency() {
         Espresso.onView(ViewMatchers.withId(R.id.etCurrency)).perform(ViewActions.typeText("22222"))
