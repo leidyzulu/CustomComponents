@@ -15,7 +15,6 @@ class MockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout)
 
-        tlEmail?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
     }
 
     companion object {

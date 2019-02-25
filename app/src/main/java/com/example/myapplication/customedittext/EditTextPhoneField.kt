@@ -23,6 +23,10 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         setDigits()
     }
 
+    fun setRegex(regex: String){
+        mRegex = regex
+    }
+
     private fun setDigits() {
         this.editText?.keyListener = DigitsKeyListener.getInstance(DIGITS_PHONE)
     }

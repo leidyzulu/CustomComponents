@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.helper.DATE_REGEX
+import com.example.myapplication.helper.PHONE_NUMBER_REGEX
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
+        tvPhone?.setRegex(PHONE_NUMBER_REGEX)
+
 
         btnRun.setOnClickListener {
           for (i in 0 until (llMain?.childCount ?: 0)){

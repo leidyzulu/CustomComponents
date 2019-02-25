@@ -8,6 +8,7 @@ import com.example.myapplication.customedittext.EditTextDateField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_DATE
+import com.example.myapplication.helper.VALIDATE_EMPTY
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -171,4 +172,13 @@ class EditTextDateFieldTest : MockActivityTest() {
             field?.getUpperLimit()
         )
     }
+
+    @Test
+    fun shouldShowAndErrorWithEmptyDate() {
+        Assert.assertEquals(
+            ValidationResult(false, VALIDATE_EMPTY),
+            (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()
+        )
+    }
+
 }
