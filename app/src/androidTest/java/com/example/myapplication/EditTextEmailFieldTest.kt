@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.support.design.widget.TextInputLayout
 import android.support.test.espresso.Espresso
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
@@ -29,6 +30,20 @@ class EditTextEmailFieldTest : MockActivityTest()
     @Before
     fun setup() {
         MockActivity.layout = R.layout.activity_main
+    }
+
+    @Test
+    fun shouldHaveDefaultHint() {
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.tlEmail))
+
+        //When
+        view.perform(ViewActions.click())
+
+        //Then
+        ViewMatchers.withHint("Email").matches(view)
     }
 
 

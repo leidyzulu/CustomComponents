@@ -23,6 +23,20 @@ import org.junit.Test
 class EditTextPhoneNumberFieldTest : MockActivityTest() {
 
     @Test
+    fun shouldHaveDefaultHint() {
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.tvPhone))
+
+        //When
+        view.perform(ViewActions.click())
+
+        //Then
+        ViewMatchers.withHint("Phone").matches(view)
+    }
+
+    @Test
     fun shouldFormatPhoneNumber() {
         restartActivity()
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText("1234567890"))
