@@ -7,6 +7,4 @@ interface FormField {
     fun showError(message: String)
 
     fun clearError()
-
-
 }
