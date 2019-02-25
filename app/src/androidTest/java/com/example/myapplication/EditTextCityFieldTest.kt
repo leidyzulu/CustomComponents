@@ -60,9 +60,7 @@ class EditTextCityFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(ViewMatchers.withId(R.id.tlCity))
-        Thread.sleep(2000)
-
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etCity))
         val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
 
         //When
