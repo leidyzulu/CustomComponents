@@ -23,7 +23,6 @@
         <EditText
                 android:layout_width="match_parent"
                 android:hint="Teléfono"
-                android:digits="0123456789-"
                 android:id="@+id/etPhone"
                 android:layout_height="wrap_content"/>
 
@@ -64,7 +63,7 @@
         <EditText
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
-                android:hint="email"
+                android:hint="date"
                 android:layout_height="wrap_content"/>
 
 

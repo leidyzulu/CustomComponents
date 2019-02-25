@@ -8,22 +8,11 @@ import com.example.myapplication.helper.*
 
 class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcher {
 
-    private var mIsDeleting = false
-
-    init {
-        mReceiver.setOnKeyListener { _, keyCode, _ ->
-            mIsDeleting = when (keyCode) {
-                KeyEvent.KEYCODE_DEL -> true
-                else -> false
-            }
-            false
-        }
-    }
 
     override fun afterTextChanged(s: Editable?) {
         s?.let { text ->
             mReceiver.removeTextChangedListener(this)
-            var resultado = s.toString().replace("_", "")
+            var resultado = s.toString().replace("-", "")
 
             when (resultado.length) {
                 in 0..3 -> {
@@ -47,16 +36,6 @@ class PhoneNumberTextWatcherMask(private val mReceiver: EditText) : TextWatcher 
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (mIsDeleting) {
-            mIsDeleting = false
-            return
-        }
 
-        s?.let {
-            if ((it.length == PHONE_NUMBER_FORMAT_FIRST_HYPHEN_INDEX ||
-                            it.length == PHONE_NUMBER_FORMAT_SECOND_HYPHEN_INDEX)) {
-                mReceiver.append(HYPHEN)
-            }
-        }
     }
 }

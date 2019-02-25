@@ -7,6 +7,7 @@ const val VALIDATE_EMAIL = "Email incorrect."
 const val VALIDATE_DATE = "Date incorrect."
 const val EMPTY = ""
 const val MAX_LENGHT = 12
+const val DIGITS_PHONE = "0123456789-"
 
 /**PHONE NUMBER FORMATS**/
 const val PHONE_NUMBER_FORMAT_FIRST_HYPHEN_INDEX = 3

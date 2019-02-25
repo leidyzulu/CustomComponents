@@ -8,6 +8,8 @@ import com.example.myapplication.helper.VALIDATE_LENGTH
 import com.example.myapplication.helper.masks.PhoneNumberTextWatcherMask
 import android.text.InputFilter
 import android.text.InputType
+import android.text.method.DigitsKeyListener
+import com.example.myapplication.helper.DIGITS_PHONE
 import com.example.myapplication.helper.MAX_LENGHT
 
 
@@ -34,12 +36,15 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         setInputType()
         setMaxLength()
         setMaskPhone()
-
-
+        setDigits()
     }
 
-    private fun setInputType(){
-        mEditText?.inputType = InputType.TYPE_CLASS_PHONE
+    private fun setDigits() {
+        this.editText?.keyListener = DigitsKeyListener.getInstance(DIGITS_PHONE)
+    }
+
+    private fun setInputType() {
+        mEditText?.inputType = InputType.TYPE_CLASS_PHONE or InputType.TYPE_CLASS_NUMBER
     }
 
     private fun setMaskPhone() {
@@ -53,7 +58,6 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         filterArray[0] = InputFilter.LengthFilter(MAX_LENGHT)
         mEditText?.filters = filterArray
     }
-
 
     override fun getMessage(): ValidationResult {
         return ValidationResult(false, VALIDATE_LENGTH)
