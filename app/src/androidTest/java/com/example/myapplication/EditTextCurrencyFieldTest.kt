@@ -49,5 +49,4 @@ class EditTextCurrencyFieldTest : MockActivityTest() {
         //Then
         ViewMatchers.withText("$22,222").matches(view)
     }
-
 }

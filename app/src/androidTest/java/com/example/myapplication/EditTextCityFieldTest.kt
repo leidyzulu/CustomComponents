@@ -3,17 +3,16 @@ package com.example.myapplication
 import android.support.design.widget.TextInputLayout
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.matcher.ViewMatchers
-import org.hamcrest.Matcher
+import android.view.View
+import com.example.myapplication.customedittext.EditTextCityField
+import com.example.myapplication.formfield.FormField
+import com.example.myapplication.formfield.ValidationResult
+import com.example.myapplication.helper.VALIDATE_CITY_ERROR
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import android.widget.EditText
-import android.support.test.espresso.matcher.BoundedMatcher
-import android.view.View
-import org.hamcrest.Description
-
-import org.hamcrest.Matchers.`is`
 
 /**
  * @author Oscar Gallon on 2/25/19.
@@ -41,7 +40,7 @@ class EditTextCityFieldTest : MockActivityTest() {
     }
 
     @Test
-    fun shouldDisplayACustomHint(){
+    fun shouldDisplayACustomHint() {
         restartActivity()
 
         ruleActivity.activity.findViewById<TextInputLayout>(R.id.tlCity).hint = "Custom Hint"
@@ -54,30 +53,24 @@ class EditTextCityFieldTest : MockActivityTest() {
 
         //Then
         ViewMatchers.withHint("Custom Hint").matches(view)
+    }
+
+    @Test
+    fun shouldReturnErrorIfCityNotBelongToTheState() {
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etCity))
+        val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+
+        //When
+        view.perform(typeText("C"))
+        editTextCityField?.setCities(arrayListOf("Medellin", "Sabaneta"))
+        editTextCityField?.setStateName("Antioquia")
+
+        //Then
+        Assert.assertEquals(ValidationResult(false, VALIDATE_CITY_ERROR), editTextCityField?.isValid())
 
     }
 
-}
-
-object HintMatcher {
-
-    internal fun withHint(substring: String): Matcher<View> {
-        return withHint(`is`(substring))
-    }
-
-    internal fun withHint(stringMatcher: Matcher<String>): Matcher<View> {
-        checkNotNull(stringMatcher)
-        return object : BoundedMatcher<View, EditText>(EditText::class.java) {
-
-            public override fun matchesSafely(view: EditText): Boolean {
-                val hint = view.hint
-                return hint != null && stringMatcher.matches(hint.toString())
-            }
-
-            override fun describeTo(description: Description) {
-                description.appendText("with hint: ")
-                stringMatcher.describeTo(description)
-            }
-        }
-    }
 }
