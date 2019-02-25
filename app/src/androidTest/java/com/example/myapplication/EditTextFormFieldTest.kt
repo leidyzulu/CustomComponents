@@ -39,7 +39,6 @@ class EditTextFormFieldTest {
         MockActivity.layout = R.layout.activity_main
     }
 
-    @Ignore
     @Test
     fun shouldFormatPhoneNumber() {
         Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(typeText("1234567890"))
