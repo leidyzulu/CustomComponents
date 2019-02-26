@@ -51,6 +51,4 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
 
     abstract fun getErrorValidateResult(): ValidationResult
 
-    abstract fun setup()
-
 }

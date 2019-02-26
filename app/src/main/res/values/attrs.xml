@@ -14,5 +14,9 @@
         <attr name="hint" format="string"/>
         <attr name="input_type" format="string"/>
     </declare-styleable>
+    
+    <declare-styleable name="StateSpinnerFormField">
+        <attr name="label" format="string"/>
+    </declare-styleable>
 
 </resources>
