@@ -1,9 +1,9 @@
 package com.example.myapplication.customedittext
 
 import android.content.Context
+import android.text.InputFilter
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.myapplication.R
@@ -18,6 +18,19 @@ import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
 open class BaseEditTextFormField(context: Context, private val mAttrs: AttributeSet) :
     EditTextFormField(context, mAttrs) {
 
+    private val mHint: String
+
+    init {
+        val typedArray = context.obtainStyledAttributes(
+            mAttrs,
+            R.styleable.BaseEditTextFormField,
+            DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
+        )
+
+        mHint = typedArray.getString(R.styleable.BaseEditTextFormField_hint)
+            ?: context.getString(R.string.default_base_hint)
+        typedArray.recycle()
+    }
 
     private val mLayoutParams = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -30,7 +43,7 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
     }
 
     override fun getErrorValidateResult(): ValidationResult {
-        return ValidationResult(false, VALIDATE_EMPTY_ERROR)
+        return ValidationResult(false, String.format(VALIDATE_EMPTY_ERROR, editText?.hint))
     }
 
     override fun setup() {
@@ -38,19 +51,20 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
         val _editText = mEditText?.let { it } ?: return
 
         _editText.apply {
-            hint = context.theme.obtainStyledAttributes(
-                mAttrs,
-                R.styleable.EditTextFormField,
-                DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
-            )?.getString(R.styleable.BaseEditTextFormField_hint) ?: context.getString(R.string.default_base_hint)
+            id = R.id.etBase
+            hint = mHint
             setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.default_text_size))
-            id = View.generateViewId()
         }
 
         addView(_editText, mLayoutParams)
     }
 
-    fun setMaxLenght(lenght: Int) {
-        mEditText?.maxEms = lenght
+    fun setMaxLength(length: Int) {
+        val filter = InputFilter.LengthFilter(length)
+        mEditText?.filters = arrayOf(filter)
+    }
+
+    fun setRegex(regex: String) {
+        mRegex = regex
     }
 }

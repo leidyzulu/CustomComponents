@@ -5,7 +5,6 @@
         <attr name="regex" format="string"/>
     </declare-styleable>
 
-
     <declare-styleable name="EditTextDateField">
         <attr name="picker_icon" format="integer"/>
     </declare-styleable>

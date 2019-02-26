@@ -1,6 +1,6 @@
 package com.example.myapplication.helper
 
-const val VALIDATE_EMPTY_ERROR = "This field must not be empty"
+const val VALIDATE_EMPTY_ERROR = "Field %s must not be empty"
 const val VALIDATE_NUMERIC_ERROR = "This field must be numeric"
 const val VALIDATE_LENGTH_ERROR = "This field must have ten digits."
 const val VALIDATE_EMAIL_ERROR = "Email incorrect."

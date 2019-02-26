@@ -16,17 +16,13 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
     protected var mEditText: EditText? = null
 
     init {
-        context.theme.obtainStyledAttributes(
+        val typedArray = context.obtainStyledAttributes(
             attrs,
             R.styleable.EditTextFormField,
             DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
-        ).apply {
-            try {
-                mRegex = getString(R.styleable.EditTextFormField_regex)
-            } finally {
-                recycle()
-            }
-        }
+        )
+        mRegex = typedArray.getString(R.styleable.EditTextFormField_regex)
+        typedArray.recycle()
     }
 
     override fun isValid(): ValidationResult {

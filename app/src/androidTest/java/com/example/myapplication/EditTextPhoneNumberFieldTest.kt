@@ -30,7 +30,7 @@ class EditTextPhoneNumberFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(ViewMatchers.withId(R.id.tvPhone))
+        val view = Espresso.onView(ViewMatchers.withId(R.id.tlPhone))
 
         //When
         view.perform(ViewActions.click())
