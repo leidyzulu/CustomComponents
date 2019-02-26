@@ -9,7 +9,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <com.example.myapplication.customradiogroup.RadioGroupFormField
+    <co.condorlabs.customcomponents.customradiogroup.RadioGroupFormField
             android:layout_width="match_parent"
             x:options3="3"
             android:id="@+id/tlRadioGroup"

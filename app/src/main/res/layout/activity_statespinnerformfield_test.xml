@@ -4,9 +4,9 @@
               android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <com.example.myapplication.customspinner.StateSpinnerFormField android:layout_width="match_parent"
-                                                                   app:label="State"
-                                                                   android:id="@+id/tlState"
-                                                                   android:layout_height="wrap_content"/>
+    <co.condorlabs.customcomponents.customspinner.StateSpinnerFormField android:layout_width="match_parent"
+                                                                        app:label="State"
+                                                                        android:id="@+id/tlState"
+                                                                        android:layout_height="wrap_content"/>
 
 </LinearLayout>

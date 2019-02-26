@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.myapplication.customedittext.EditTextDateField
+    <co.condorlabs.customcomponents.customedittext.EditTextDateField
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:id="@+id/tlDate"
