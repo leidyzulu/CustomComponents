@@ -9,13 +9,6 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <com.example.myapplication.customradiogroup.RadioGroupFormField
-            android:layout_width="match_parent"
-            x:options3="3"
-            android:id="@+id/tlRadioGroup"
-            android:layout_height="wrap_content"/>
-
-
     <Button
             android:id="@+id/btnRun"
             android:layout_width="wrap_content"
