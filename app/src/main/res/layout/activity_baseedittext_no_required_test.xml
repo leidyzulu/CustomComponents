@@ -10,7 +10,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/tlBase"
             android:textSize="@dimen/default_text_size"
+            app:regex="^[0-9]{5}$"
+            app:is_required="false"
             app:hint="@string/zip_hint"
-            app:input_type="number"/>
+            android:inputType="number"/>
 
 </LinearLayout>

@@ -16,10 +16,6 @@ class EditTextEmailField(context: Context, attrs: AttributeSet) : BaseEditTextFo
         setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
     }
 
-    fun setRegex(regex: String) {
-        mRegex = regex
-    }
-
     private fun setInputType() {
         mEditText?.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
     }

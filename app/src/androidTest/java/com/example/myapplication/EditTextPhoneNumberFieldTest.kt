@@ -30,7 +30,7 @@ class EditTextPhoneNumberFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(ViewMatchers.withId(R.id.tvPhone))
+        val view = Espresso.onView(ViewMatchers.withId(R.id.tlPhone))
 
         //When
         view.perform(ViewActions.click())
@@ -42,25 +42,34 @@ class EditTextPhoneNumberFieldTest : MockActivityTest() {
     @Test
     fun shouldFormatPhoneNumber() {
         restartActivity()
-        Espresso.onView(ViewMatchers.withId(R.id.etPhone)).perform(ViewActions.typeText("1234567890"))
-            .check(ViewAssertions.matches(ViewMatchers.withText("123-456-7890")))
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etPhone))
+
+        //When
+        view.perform(ViewActions.typeText("1234567890"))
+
+        //Then
+        view.check(ViewAssertions.matches(ViewMatchers.withText("123-456-7890")))
+
     }
 
     @Test
     fun shouldShowAndErrorWithEmptyText() {
         restartActivity()
+
         //Given
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlPhone) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlPhone) as? EditTextPhoneField)
-        val resultIsValid : ValidationResult?
+        val resultIsValid: ValidationResult?
+        txtInputLayout?.setIsRequired(true)
 
         //When
-        resultIsValid = field?.isValid()
+        resultIsValid = txtInputLayout?.isValid()
 
         //Then
         txtInputLayout?.setRegex(PHONE_NUMBER_REGEX)
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY_ERROR),resultIsValid
+            ValidationResult(false, VALIDATE_EMPTY_ERROR), resultIsValid
 
         )
     }
@@ -70,8 +79,8 @@ class EditTextPhoneNumberFieldTest : MockActivityTest() {
         restartActivity()
         //Given
         val phone = "123456"
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlPhone) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlPhone) as? EditTextPhoneField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(PHONE_NUMBER_REGEX)
@@ -80,7 +89,7 @@ class EditTextPhoneNumberFieldTest : MockActivityTest() {
         //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_LENGTH_ERROR),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 }

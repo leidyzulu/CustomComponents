@@ -22,9 +22,6 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : BaseEditTextFo
         setPhoneMask()
         setDigits()
     }
-    fun setRegex(regex: String){
-        mRegex = regex
-    }
 
     private fun setDigits() {
         this.editText?.keyListener = DigitsKeyListener.getInstance(DIGITS_PHONE)

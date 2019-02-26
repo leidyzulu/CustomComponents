@@ -5,4 +5,5 @@
     <item type="id" name="etDate"/>
     <item type="id" name="etEmail"/>
     <item type="id" name="etPhone"/>
+    <item type="id" name="etBase"/>
 </resources>

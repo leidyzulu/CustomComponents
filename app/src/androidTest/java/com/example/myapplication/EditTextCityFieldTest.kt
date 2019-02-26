@@ -61,6 +61,7 @@ class EditTextCityFieldTest : MockActivityTest() {
         //Given
         val view = Espresso.onView(ViewMatchers.withId(R.id.etCity))
         val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+        editTextCityField?.setIsRequired(true)
 
         //When
         view.perform(typeText("C"))
@@ -77,6 +78,7 @@ class EditTextCityFieldTest : MockActivityTest() {
 
         //Given
         val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+        editTextCityField?.setIsRequired(true)
 
         //When
         val result = editTextCityField?.isValid()
@@ -92,6 +94,7 @@ class EditTextCityFieldTest : MockActivityTest() {
         //Given
         val view = Espresso.onView(ViewMatchers.withId(R.id.etCity))
         val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+        editTextCityField?.setIsRequired(true)
 
         //When
         view.perform(typeText("C"))

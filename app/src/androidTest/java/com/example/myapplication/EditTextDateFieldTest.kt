@@ -4,6 +4,7 @@ import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.view.View
+import com.example.myapplication.customedittext.EditTextCityField
 import com.example.myapplication.customedittext.EditTextDateField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
@@ -34,6 +35,7 @@ class EditTextDateFieldTest : MockActivityTest() {
 
         //Given
         val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+        (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)?.setIsRequired(true)
 
         //When
         view.perform(ViewActions.typeText("11/DD/2019"))
@@ -51,6 +53,7 @@ class EditTextDateFieldTest : MockActivityTest() {
 
         //Given
         val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+        (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)?.setIsRequired(true)
 
         //When
         view.perform(ViewActions.typeText("M1/01/2019"))
@@ -68,6 +71,7 @@ class EditTextDateFieldTest : MockActivityTest() {
 
         //Given
         val view = Espresso.onView(ViewMatchers.withId(R.id.etDate))
+        (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)?.setIsRequired(true)
 
         //When
         view.perform(ViewActions.typeText("12/01/2YY9"))
@@ -86,6 +90,7 @@ class EditTextDateFieldTest : MockActivityTest() {
         //Given
         val view =
             Espresso.onView(ViewMatchers.withId(R.id.etDate))
+        (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)?.setIsRequired(true)
 
         //When
         view.perform(ViewActions.replaceText(mDefaultDateFormat))
@@ -176,6 +181,14 @@ class EditTextDateFieldTest : MockActivityTest() {
     @Test
     fun shouldShowAndErrorWithEmptyDate() {
         restartActivity()
+
+        //Given
+        (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? EditTextDateField)?.setIsRequired(true)
+
+        //When
+
+
+        //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMPTY_ERROR),
             (ruleActivity.activity.findViewById<View>(R.id.tlDate) as? FormField)?.isValid()

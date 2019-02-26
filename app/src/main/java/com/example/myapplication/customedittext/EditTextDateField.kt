@@ -51,10 +51,6 @@ class EditTextDateField(context: Context, attrs: AttributeSet) : BaseEditTextFor
         setupPicker()
     }
 
-    fun setRegex(regex: String) {
-        mRegex = regex
-    }
-
     override fun getErrorValidateResult(): ValidationResult {
         return ValidationResult(false, VALIDATE_DATE_ERROR)
     }
