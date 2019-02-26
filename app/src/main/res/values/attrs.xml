@@ -19,4 +19,9 @@
         <attr name="label" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="BaseRadioGroupFormField">
+        <attr name="options3" format="integer"/>
+        <attr name="values" format="reference"/>
+    </declare-styleable>
+
 </resources>
