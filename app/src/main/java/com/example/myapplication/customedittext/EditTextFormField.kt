@@ -15,6 +15,8 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
     protected var mRegex: String? = null
     protected var mEditText: EditText? = null
 
+    override var mIsRequired: Boolean = false
+
     init {
         val typedArray = context.obtainStyledAttributes(
             attrs,
@@ -22,16 +24,17 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
             DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
         )
         mRegex = typedArray.getString(R.styleable.EditTextFormField_regex)
+        mIsRequired = typedArray.getBoolean(R.styleable.EditTextFormField_is_required, false)
         typedArray.recycle()
     }
 
     override fun isValid(): ValidationResult {
         return when {
-            mEditText?.text.toString().isEmpty() -> ValidationResult(
+            mEditText?.text.toString().isEmpty() && mIsRequired -> ValidationResult(
                 false,
                 VALIDATE_EMPTY_ERROR
             )
-            mRegex != null && !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getErrorValidateResult()
+            mIsRequired && mRegex != null && !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getErrorValidateResult()
             else -> ValidationResult(true, EMPTY)
         }
     }

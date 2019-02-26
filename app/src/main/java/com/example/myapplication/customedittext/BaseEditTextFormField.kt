@@ -18,7 +18,14 @@ import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
 open class BaseEditTextFormField(context: Context, private val mAttrs: AttributeSet) :
     EditTextFormField(context, mAttrs) {
 
+    override var mIsRequired: Boolean = false
+
     private val mHint: String
+
+    private val mLayoutParams = LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    )
 
     init {
         val typedArray = context.obtainStyledAttributes(
@@ -32,10 +39,6 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
         typedArray.recycle()
     }
 
-    private val mLayoutParams = LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.MATCH_PARENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT
-    )
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -66,5 +69,9 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
 
     fun setRegex(regex: String) {
         mRegex = regex
+    }
+
+    fun setIsRequired(required: Boolean) {
+        mIsRequired = required
     }
 }

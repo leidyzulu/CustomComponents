@@ -3,6 +3,7 @@
 
     <declare-styleable name="EditTextFormField">
         <attr name="regex" format="string"/>
+        <attr name="is_required" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="EditTextDateField">

@@ -47,19 +47,40 @@ class BaseEditTextFieldTest : MockActivityTest() {
     }
 
     @Test
-    fun shouldHaveRegexAndHint(){
-        MockActivity.layout = R.layout. activity_baseedittext_with_hint_and_regex
+    fun shouldNotBeInvalidIfItsNotRequired(){
+        MockActivity.layout = R.layout.activity_baseedittext_no_required_test
         restartActivity()
 
         //Given
         val view = Espresso.onView(withId(R.id.tlBase))
         val editText = Espresso.onView(withId(R.id.etBase))
         val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
+        formField.setIsRequired(false)
+        formField.setMaxLength(5)
+
+        //When
+        editText.perform(typeText("156"))
+        val result = formField.isValid()
+
+        //Then
+        Assert.assertTrue(result.isValid)
+    }
+
+    @Test
+    fun shouldHaveRegexAndHint() {
+        MockActivity.layout = R.layout.activity_baseedittext_with_hint_and_regex
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(withId(R.id.tlBase))
+        val editText = Espresso.onView(withId(R.id.etBase))
+        val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
+        formField.setIsRequired(true)
         formField.setMaxLength(5)
 
         //When
         editText.perform(typeText("123456"))
-        val result= formField.isValid()
+        val result = formField.isValid()
 
         //Then
         ViewMatchers.withHint("Zip").matches(view)
@@ -82,7 +103,6 @@ class BaseEditTextFieldTest : MockActivityTest() {
 
         //Then
         ViewMatchers.withHint("").matches(view)
-        Thread.sleep(1000)
     }
 
     @Test
@@ -116,10 +136,13 @@ class BaseEditTextFieldTest : MockActivityTest() {
         val view = Espresso.onView(withId(R.id.etBase))
 
         //When
+        formField.setMaxLength(9)
         view.perform(typeText("12345678901"))
+        val result = formField.isValid()
 
         //Then
         ViewMatchers.withText("1234567890").matches(view)
+        Assert.assertTrue(result.isValid)
     }
 
     @Test
@@ -129,6 +152,7 @@ class BaseEditTextFieldTest : MockActivityTest() {
 
         //Given
         val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
+        formField.setIsRequired(true)
         formField.setRegex("^[0-9]{9}$")
         val view = Espresso.onView(withId(R.id.etBase))
 
@@ -138,7 +162,7 @@ class BaseEditTextFieldTest : MockActivityTest() {
 
         //Then
         Assert.assertFalse(result.isValid)
-        Assert.assertEquals(String.format(VALIDATE_EMPTY_ERROR, "Zip"), result.error )
+        Assert.assertEquals(String.format(VALIDATE_EMPTY_ERROR, "Zip"), result.error)
     }
 
 }
