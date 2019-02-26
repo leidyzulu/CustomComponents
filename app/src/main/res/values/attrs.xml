@@ -14,4 +14,9 @@
         <attr name="hint" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="RadioGroupFormField">
+        <attr name="values" format="reference"/>
+        <attr name="options" format="integer"/>
+    </declare-styleable>
+
 </resources>

@@ -5,5 +5,12 @@
     <string name="currency_default_hint">Currency</string>
     <string name="default_base_hint">Enter some text</string>
     <string name="zip_hint">Zip</string>
+    <string-array name="values">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+
+
+    </string-array>
 
 </resources>
