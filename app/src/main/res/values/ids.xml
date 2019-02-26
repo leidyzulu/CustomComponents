@@ -8,4 +8,5 @@
     <item type="id" name="etBase"/>
     <item type="id" name="spState"/>
     <item type="id" name="tvLabel"/>
+    <item type="id" name="tvLabelRadioGroup"/>
 </resources>

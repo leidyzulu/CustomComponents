@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import co.condorlabs.customcomponents.R
 import co.condorlabs.customcomponents.customedittext.TextFormField
 import co.condorlabs.customcomponents.formfield.ValidationResult
@@ -14,21 +15,27 @@ import co.condorlabs.customcomponents.helper.DEFAULT_STYLE_RES
 import co.condorlabs.customcomponents.helper.EMPTY
 import co.condorlabs.customcomponents.helper.VALIDATE_RADIOGROUP_NO_SELECTION_ERROR
 
-abstract class BaseRadioGroupFormField(context: Context, private val attrs: AttributeSet) :
-    TextInputLayout(context, attrs), TextFormField {
+abstract class BaseRadioGroupFormField(context: Context, private val mAttrs: AttributeSet) :
+    TextInputLayout(context, mAttrs), TextFormField {
 
     private var mCountOptions = 0
     protected var textOptions: Array<CharSequence>? = null
     private var mRadioGroup: RadioGroup? = null
+    private var mLabelText = EMPTY
+
+    protected val mTVLabel = TextView(context, mAttrs)?.apply {
+        id = R.id.tvLabelRadioGroup
+    }
 
     init {
         val typedArray = context.obtainStyledAttributes(
-            attrs,
+            mAttrs,
             R.styleable.BaseRadioGroupFormField,
             DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
         )
         mCountOptions = typedArray.getInt(R.styleable.BaseRadioGroupFormField_count_options, 0)
         textOptions = typedArray.getTextArray(R.styleable.BaseRadioGroupFormField_values)
+        mLabelText = typedArray.getString(R.styleable.BaseRadioGroupFormField_title)
 
         typedArray.recycle()
     }
@@ -71,7 +78,8 @@ abstract class BaseRadioGroupFormField(context: Context, private val attrs: Attr
     }
 
     override fun setup() {
-        mRadioGroup = RadioGroup(context, attrs)
+        mTVLabel.text = mLabelText
+        mRadioGroup = RadioGroup(context, mAttrs)
         for (i in 0 until mCountOptions) {
             mRadioGroup?.addView(RadioButton(context).apply {
                 id = i

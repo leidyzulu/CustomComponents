@@ -12,4 +12,8 @@ class RadioGroupFormField(context: Context, attrs: AttributeSet) : BaseRadioGrou
         textOptions = options
     }
 
+    fun setIsRequired(isRequired: Boolean){
+        mIsRequired = isRequired
+    }
+
 }
