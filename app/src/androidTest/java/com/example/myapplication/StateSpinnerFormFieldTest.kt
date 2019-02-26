@@ -6,6 +6,7 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.Spinner
+import com.example.myapplication.customspinner.StateListener
 import com.example.myapplication.customspinner.StateSpinnerFormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_SPINNER_NO_SELECTION_ERROR
@@ -19,8 +20,7 @@ import org.junit.Test
  * @author Oscar Gallon on 2/26/19.
  */
 class StateSpinnerFormFieldTest : MockActivityTest() {
-
-
+    
     @Before
     fun setup() {
         MockActivity.layout = R.layout.activity_statespinnerformfield_test
@@ -118,6 +118,9 @@ class StateSpinnerFormFieldTest : MockActivityTest() {
         val error = String.format(VALIDATE_SPINNER_NO_SELECTION_ERROR, "State")
 
         //When
+        ruleActivity.runOnUiThread {
+            formField.setStates(arrayListOf("Antioquia", "Cundinamarca", "Atlantico"))
+        }
         val result = formField.isValid()
         showErrorInInputLayout(formField, result.error)
 
@@ -128,5 +131,30 @@ class StateSpinnerFormFieldTest : MockActivityTest() {
         )
 
         Assert.assertEquals(error, formField.error)
+    }
+
+    @Test
+    fun shouldCallListenerOnItemSelected() {
+        restartActivity()
+
+        //Given
+        var selectedState = ""
+        val formField = ruleActivity.activity.findViewById<StateSpinnerFormField>(R.id.tlState)
+        val listener = object : StateListener {
+            override fun onStateSetListener(state: String) {
+                selectedState = state
+
+            }
+        }
+        val view = Espresso.onView(withId(R.id.spState))
+
+        //When
+        ruleActivity.runOnUiThread {
+            formField.setStates(arrayListOf("Antioquia", "Cundinamarca", "Atlantico"))
+        }
+        formField.setOnStateSetListener(listener)
+        view.perform(click())
+        onData(allOf(`is`(instanceOf(String::class.java)), `is`("Atlantico"))).perform(click())
+        Assert.assertEquals("Atlantico", selectedState)
     }
 }
