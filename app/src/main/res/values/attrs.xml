@@ -15,9 +15,9 @@
         <attr name="input_type" format="string"/>
     </declare-styleable>
 
-    <declare-styleable name="RadioGroupFormField">
+    <declare-styleable name="BaseRadioGroupFormField">
+        <attr name="options3" format="integer"/>
         <attr name="values" format="reference"/>
-        <attr name="options" format="integer"/>
     </declare-styleable>
 
 </resources>

@@ -5,8 +5,7 @@
 
     <com.example.myapplication.customradiogroup.RadioGroupFormField
             android:layout_width="match_parent"
-            app:options="3"
-            app:values="@array/values"
+
             android:id="@+id/tlRadioGroup"
             android:layout_height="wrap_content"/>
 

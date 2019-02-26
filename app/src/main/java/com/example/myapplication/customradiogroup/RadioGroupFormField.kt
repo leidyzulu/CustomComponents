@@ -11,20 +11,8 @@ class RadioGroupFormField(context: Context, attrs: AttributeSet) : BaseRadioGrou
 
     override var mIsRequired: Boolean = false
 
-    init {
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.EditTextFormField,
-            DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
-        ).apply {
-            try {
-                countOptions = getInt(R.styleable.RadioGroupFormField_options, 0)
-                textOptions = getTextArray(R.styleable.RadioGroupFormField_values)
-            } finally {
-                recycle()
-            }
-        }
+    fun setArrayTextOption(options: Array<CharSequence>){
+        textOptions = options
     }
-
 
 }
