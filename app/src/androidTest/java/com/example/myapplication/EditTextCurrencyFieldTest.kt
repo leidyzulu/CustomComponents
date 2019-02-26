@@ -4,6 +4,8 @@ import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.view.View
+import com.example.myapplication.customedittext.EditTextCityField
+import com.example.myapplication.customedittext.EditTextCurrencyField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
@@ -22,7 +24,8 @@ class EditTextCurrencyFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? FormField)
+        val view = (ruleActivity.activity.findViewById<View>(R.id.tlCurrency) as? EditTextCurrencyField)
+        view?.setIsRequired(true)
 
         //When
         val result = view?.isValid()

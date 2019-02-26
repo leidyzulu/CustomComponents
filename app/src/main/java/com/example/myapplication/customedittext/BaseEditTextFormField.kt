@@ -2,6 +2,7 @@ package com.example.myapplication.customedittext
 
 import android.content.Context
 import android.text.InputFilter
+import android.text.InputType
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.EditText
@@ -20,6 +21,8 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
 
     override var mIsRequired: Boolean = false
 
+    private var mInputType: Int = InputType.TYPE_CLASS_TEXT
+
     private val mHint: String
 
     private val mLayoutParams = LinearLayout.LayoutParams(
@@ -36,6 +39,13 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
 
         mHint = typedArray.getString(R.styleable.BaseEditTextFormField_hint)
             ?: context.getString(R.string.default_base_hint)
+
+        mInputType = when (typedArray.getString(R.styleable.BaseEditTextFormField_input_type)) {
+            "number" -> InputType.TYPE_CLASS_NUMBER
+            "phone" -> InputType.TYPE_CLASS_PHONE
+            else -> InputType.TYPE_CLASS_TEXT
+        }
+
         typedArray.recycle()
     }
 
@@ -46,11 +56,13 @@ open class BaseEditTextFormField(context: Context, private val mAttrs: Attribute
     }
 
     override fun getErrorValidateResult(): ValidationResult {
-        return ValidationResult(false, String.format(VALIDATE_EMPTY_ERROR, editText?.hint))
+        return ValidationResult(false, String.format(VALIDATE_EMPTY_ERROR, mHint))
     }
 
     override fun setup() {
         mEditText = EditText(context, mAttrs)
+        mEditText?.inputType = mInputType
+
         val _editText = mEditText?.let { it } ?: return
 
         _editText.apply {

@@ -9,6 +9,7 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
+import com.example.myapplication.customedittext.EditTextDateField
 import com.example.myapplication.customedittext.EditTextEmailField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
@@ -23,8 +24,7 @@ import org.junit.*
  * @author Oscar Gallon on 2/25/19.
  */
 @RunWith(AndroidJUnit4::class)
-class EditTextEmailFieldTest : MockActivityTest()
-{
+class EditTextEmailFieldTest : MockActivityTest() {
 
     @Before
     fun setup() {
@@ -49,9 +49,16 @@ class EditTextEmailFieldTest : MockActivityTest()
     @Test
     fun shouldShowAndErrorWithEmptyEmail() {
         restartActivity()
+
+        //Given
+        (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)?.setIsRequired(true)
+
+        //When
+        val result = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+
+        //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY_ERROR),
-            (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
+            ValidationResult(false, VALIDATE_EMPTY_ERROR), result
         )
     }
 
@@ -60,8 +67,8 @@ class EditTextEmailFieldTest : MockActivityTest()
         restartActivity()
         //Given
         val text = "kdfkd"
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
@@ -70,7 +77,7 @@ class EditTextEmailFieldTest : MockActivityTest()
         //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL_ERROR),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 
@@ -79,8 +86,8 @@ class EditTextEmailFieldTest : MockActivityTest()
         restartActivity()
         //Given
         val text = "kdfkd@"
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
@@ -89,7 +96,7 @@ class EditTextEmailFieldTest : MockActivityTest()
         //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL_ERROR),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 
@@ -98,8 +105,8 @@ class EditTextEmailFieldTest : MockActivityTest()
         restartActivity()
         //Given
         val text = "kdfkd@smdms"
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
@@ -108,7 +115,7 @@ class EditTextEmailFieldTest : MockActivityTest()
         //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL_ERROR),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 
@@ -117,8 +124,8 @@ class EditTextEmailFieldTest : MockActivityTest()
         restartActivity()
         //Given
         val text = "kdfkd@smdms."
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
@@ -127,7 +134,7 @@ class EditTextEmailFieldTest : MockActivityTest()
         //Then
         Assert.assertEquals(
             ValidationResult(false, VALIDATE_EMAIL_ERROR),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 
@@ -135,8 +142,8 @@ class EditTextEmailFieldTest : MockActivityTest()
         restartActivity()
         //Given
         val text = "o@gmail.co"
-        val field = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)
         val txtInputLayout = (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? EditTextEmailField)
+        txtInputLayout?.setIsRequired(true)
 
         //When
         txtInputLayout?.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
@@ -145,7 +152,7 @@ class EditTextEmailFieldTest : MockActivityTest()
         //Then
         Assert.assertEquals(
             ValidationResult(true, EMPTY),
-            field?.isValid()
+            txtInputLayout?.isValid()
         )
     }
 }

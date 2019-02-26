@@ -11,6 +11,6 @@
             android:id="@+id/tlBase"
             android:textSize="@dimen/default_text_size"
             app:hint="@string/zip_hint"
-            android:inputType="number"/>
+            app:input_type="number"/>
 
 </LinearLayout>

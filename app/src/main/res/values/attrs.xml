@@ -12,6 +12,7 @@
 
     <declare-styleable name="BaseEditTextFormField">
         <attr name="hint" format="string"/>
+        <attr name="input_type" format="string"/>
     </declare-styleable>
 
 </resources>

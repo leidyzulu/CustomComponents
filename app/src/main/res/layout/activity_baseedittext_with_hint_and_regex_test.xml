@@ -12,6 +12,6 @@
             android:textSize="@dimen/default_text_size"
             app:regex="^[0-9]{5}$"
             app:hint="@string/zip_hint"
-            android:inputType="number"/>
+            app:input_type="number"/>
 
 </LinearLayout>

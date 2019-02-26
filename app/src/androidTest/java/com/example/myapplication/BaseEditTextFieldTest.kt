@@ -4,12 +4,14 @@ import android.support.design.widget.TextInputLayout
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.example.myapplication.customedittext.BaseEditTextFormField
+import com.example.myapplication.customedittext.EditTextFormField
 import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
 
 /**
@@ -22,13 +24,13 @@ class BaseEditTextFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(withId(R.id.tlBase))
+        val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
 
         //When
-        view.perform(click())
+
 
         //Then
-        ViewMatchers.withHint("Enter some text").matches(view)
+        Assert.assertEquals("Enter some text",(formField as? EditTextFormField)?.hint)
     }
 
     @Test
@@ -37,17 +39,18 @@ class BaseEditTextFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(withId(R.id.tlBase))
+        val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
 
         //When
-        view.perform(click())
+
 
         //Then
-        ViewMatchers.withHint("Zip").matches(view)
+
+        Assert.assertEquals("Zip",(formField as? EditTextFormField)?.hint)
     }
 
     @Test
-    fun shouldNotBeInvalidIfItsNotRequired(){
+    fun shouldNotBeInvalidIfItsNotRequired() {
         MockActivity.layout = R.layout.activity_baseedittext_no_required_test
         restartActivity()
 
@@ -67,7 +70,7 @@ class BaseEditTextFieldTest : MockActivityTest() {
 
     @Test
     fun shouldHaveRegexAndHint() {
-        MockActivity.layout = R.layout.activity_baseedittext_with_hint_and_regex
+        MockActivity.layout = R.layout.activity_baseedittext_with_hint_and_regex_test
         restartActivity()
 
         //Given
@@ -82,8 +85,8 @@ class BaseEditTextFieldTest : MockActivityTest() {
         val result = formField.isValid()
 
         //Then
-        ViewMatchers.withHint("Zip").matches(view)
-        ViewMatchers.withText("12345").matches(view)
+        Espresso.onView(ViewMatchers.withText("12345")).check(matches(isDisplayed()))
+        Assert.assertEquals("Zip",(formField as? EditTextFormField)?.hint)
         Assert.assertTrue(result.isValid)
     }
 
@@ -93,15 +96,13 @@ class BaseEditTextFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val textInputLayout = ruleActivity.activity.findViewById<TextInputLayout>(R.id.tlBase)
-        val id = textInputLayout?.editText?.id ?: 0
-        val view = Espresso.onView(withId(id))
+        val view = Espresso.onView(withId(R.id.etBase))
 
         //When
         view.perform(typeText("A"))
 
         //Then
-        ViewMatchers.withHint("").matches(view)
+        Espresso.onView(ViewMatchers.withText("")).check(matches(isDisplayed()))
     }
 
     @Test
@@ -138,9 +139,10 @@ class BaseEditTextFieldTest : MockActivityTest() {
         formField.setMaxLength(9)
         view.perform(typeText("12345678901"))
         val result = formField.isValid()
+        Thread.sleep(2000)
 
         //Then
-        ViewMatchers.withText("1234567890").matches(view)
+        Espresso.onView(ViewMatchers.withText("123456789")).check(matches(isDisplayed()))
         Assert.assertTrue(result.isValid)
     }
 
