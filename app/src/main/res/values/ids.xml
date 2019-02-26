@@ -6,4 +6,6 @@
     <item type="id" name="etEmail"/>
     <item type="id" name="etPhone"/>
     <item type="id" name="etBase"/>
+    <item type="id" name="spState"/>
+    <item type="id" name="tvLabel"/>
 </resources>
