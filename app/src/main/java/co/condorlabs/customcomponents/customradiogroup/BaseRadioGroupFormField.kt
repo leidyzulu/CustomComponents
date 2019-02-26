@@ -27,7 +27,7 @@ abstract class BaseRadioGroupFormField(context: Context, private val attrs: Attr
             R.styleable.BaseRadioGroupFormField,
             DEFAULT_STYLE_ATTR, DEFAULT_STYLE_RES
         )
-        mCountOptions = typedArray.getInt(R.styleable.BaseRadioGroupFormField_options3, 0)
+        mCountOptions = typedArray.getInt(R.styleable.BaseRadioGroupFormField_count_options, 0)
         textOptions = typedArray.getTextArray(R.styleable.BaseRadioGroupFormField_values)
 
         typedArray.recycle()
@@ -47,7 +47,6 @@ abstract class BaseRadioGroupFormField(context: Context, private val attrs: Attr
         }
         return count
     }
-
 
     override fun isValid(): ValidationResult {
 
