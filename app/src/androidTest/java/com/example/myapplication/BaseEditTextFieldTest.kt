@@ -52,7 +52,6 @@ class BaseEditTextFieldTest : MockActivityTest() {
         restartActivity()
 
         //Given
-        val view = Espresso.onView(withId(R.id.tlBase))
         val editText = Espresso.onView(withId(R.id.etBase))
         val formField = ruleActivity.activity.findViewById<BaseEditTextFormField>(R.id.tlBase)
         formField.setIsRequired(false)
