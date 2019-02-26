@@ -1,11 +1,11 @@
 package com.example.myapplication.helper
 
-const val VALIDATE_EMPTY = "This field must not be empty"
-const val VALIDATE_NUMERIC = "This field must be numeric"
-const val VALIDATE_LENGTH = "This field must have ten digits."
-const val VALIDATE_EMAIL = "Email incorrect."
-const val VALIDATE_DATE = "Date incorrect."
-const val VALIDATE_CURRENCY = "Currency incorrect." 
+const val VALIDATE_EMPTY_ERROR = "This field must not be empty"
+const val VALIDATE_NUMERIC_ERROR = "This field must be numeric"
+const val VALIDATE_LENGTH_ERROR = "This field must have ten digits."
+const val VALIDATE_EMAIL_ERROR = "Email incorrect."
+const val VALIDATE_DATE_ERROR = "Date incorrect."
+const val VALIDATE_CURRENCY_ERROR = "Currency incorrect."
 const val VALIDATE_CITY_ERROR = "City must belong to the state "
 const val EMPTY = ""
 const val MAX_LENGHT = 12

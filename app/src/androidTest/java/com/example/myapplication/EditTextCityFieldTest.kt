@@ -7,9 +7,9 @@ import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.matcher.ViewMatchers
 import android.view.View
 import com.example.myapplication.customedittext.EditTextCityField
-import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.VALIDATE_CITY_ERROR
+import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -18,7 +18,6 @@ import org.junit.Test
  * @author Oscar Gallon on 2/25/19.
  */
 class EditTextCityFieldTest : MockActivityTest() {
-
 
     @Before
     fun setup() {
@@ -69,8 +68,40 @@ class EditTextCityFieldTest : MockActivityTest() {
         editTextCityField?.setStateName("Antioquia")
 
         //Then
-        Assert.assertEquals(ValidationResult(false, VALIDATE_CITY_ERROR), editTextCityField?.isValid())
-
+        Assert.assertEquals(ValidationResult(false, "$VALIDATE_CITY_ERROR Antioquia"), editTextCityField?.isValid())
     }
 
+    @Test
+    fun shouldReturnErrorWithEmptyCity() {
+        restartActivity()
+
+        //Given
+        val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+
+        //When
+        val result = editTextCityField?.isValid()
+
+        //Then
+        Assert.assertEquals(ValidationResult(false, VALIDATE_EMPTY_ERROR), result)
+    }
+
+    @Test
+    fun shouldDisplayErrorWithStateName() {
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withId(R.id.etCity))
+        val editTextCityField = (ruleActivity.activity.findViewById<View>(R.id.tlCity) as? EditTextCityField)
+
+        //When
+        view.perform(typeText("C"))
+        editTextCityField?.setCities(arrayListOf("Medellin", "Sabaneta"))
+        editTextCityField?.setStateName("Antioquia")
+        editTextCityField?.let {
+            showErrorInInputLayout(it, it.isValid().error)
+        }
+
+        //Then
+        ViewMatchers.hasErrorText("$VALIDATE_CITY_ERROR Antioquia").matches(view)
+    }
 }

@@ -2,27 +2,26 @@ package com.example.myapplication.customedittext
 
 import android.content.Context
 import android.util.AttributeSet
-import com.example.myapplication.R
 import com.example.myapplication.formfield.ValidationResult
 import com.example.myapplication.helper.masks.PhoneNumberTextWatcherMask
 import android.text.InputFilter
 import android.text.InputType
 import android.text.method.DigitsKeyListener
+import com.example.myapplication.R
 import com.example.myapplication.helper.*
 
 
-class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs) {
+class EditTextPhoneField(context: Context, attrs: AttributeSet) : BaseEditTextFormField(context, attrs) {
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
 
-        mEditText = this.editText
+    override fun setup() {
+        super.setup()
+        mEditText?.id = R.id.etPhone
         setInputType()
         setMaxLength()
         setPhoneMask()
         setDigits()
     }
-
     fun setRegex(regex: String){
         mRegex = regex
     }
@@ -32,7 +31,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
     }
 
     private fun setInputType() {
-        mEditText?.inputType = InputType.TYPE_CLASS_PHONE or InputType.TYPE_CLASS_NUMBER
+        mEditText?.inputType = InputType.TYPE_CLASS_NUMBER
     }
 
     private fun setPhoneMask() {
@@ -47,7 +46,7 @@ class EditTextPhoneField(context: Context, attrs: AttributeSet) : EditTextFormFi
         mEditText?.filters = filterArray
     }
 
-    override fun getMessage(): ValidationResult {
-        return ValidationResult(false, VALIDATE_LENGTH)
+    override fun getErrorValidateResult(): ValidationResult {
+        return ValidationResult(false, VALIDATE_LENGTH_ERROR)
     }
 }

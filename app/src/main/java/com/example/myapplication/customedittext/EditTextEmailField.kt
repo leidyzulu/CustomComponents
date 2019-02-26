@@ -3,20 +3,21 @@ package com.example.myapplication.customedittext
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import com.example.myapplication.R
 import com.example.myapplication.formfield.ValidationResult
-import com.example.myapplication.helper.VALIDATE_EMAIL
+import com.example.myapplication.helper.VALIDATE_EMAIL_ERROR
 
-class EditTextEmailField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs) {
+class EditTextEmailField(context: Context, attrs: AttributeSet) : BaseEditTextFormField(context, attrs) {
+
+    override fun setup() {
+        super.setup()
+        mEditText?.id = R.id.etEmail
+        setInputType()
+        setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
+    }
 
     fun setRegex(regex: String) {
         mRegex = regex
-    }
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        mEditText = this.editText
-        setInputType()
-
     }
 
     private fun setInputType() {
@@ -24,7 +25,7 @@ class EditTextEmailField(context: Context, attrs: AttributeSet) : EditTextFormFi
     }
 
 
-    override fun getMessage(): ValidationResult {
-        return ValidationResult(false, VALIDATE_EMAIL)
+    override fun getErrorValidateResult(): ValidationResult {
+        return ValidationResult(false, VALIDATE_EMAIL_ERROR)
     }
 }

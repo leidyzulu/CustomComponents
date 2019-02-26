@@ -19,7 +19,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditTextDateField(context: Context, attrs: AttributeSet) : EditTextFormField(context, attrs),
+class EditTextDateField(context: Context, attrs: AttributeSet) : BaseEditTextFormField(context, attrs),
     DatePickerDialog.OnDateSetListener {
 
     private var mIconDrawableId = R.drawable.ic_date
@@ -45,19 +45,18 @@ class EditTextDateField(context: Context, attrs: AttributeSet) : EditTextFormFie
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        mEditText = this.editText
+    override fun setup() {
+        super.setup()
+        mEditText?.id = R.id.etDate
         setupPicker()
-
     }
 
     fun setRegex(regex: String) {
         mRegex = regex
     }
 
-    override fun getMessage(): ValidationResult {
-        return ValidationResult(false, VALIDATE_DATE)
+    override fun getErrorValidateResult(): ValidationResult {
+        return ValidationResult(false, VALIDATE_DATE_ERROR)
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int) {

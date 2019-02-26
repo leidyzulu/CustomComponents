@@ -3,5 +3,7 @@
     <string name="show_date_format">MM/dd/yyyy</string>
     <string name="edittextcityfield_default_hint">City</string>
     <string name="currency_default_hint">Currency</string>
+    <string name="default_base_hint">Enter some text</string>
+    <string name="zip_hint">Zip</string>
 
 </resources>

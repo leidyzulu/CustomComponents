@@ -9,63 +9,9 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <com.example.myapplication.customedittext.EditTextPhoneField
-            android:layout_width="253dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvPhone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
 
-        <EditText
-                android:layout_width="match_parent"
-                android:hint="Teléfono"
-                android:id="@+id/etPhone"
-                android:layout_height="wrap_content"/>
 
-
-    </com.example.myapplication.customedittext.EditTextPhoneField>
-
-
-    <com.example.myapplication.customedittext.EditTextEmailField
-            android:layout_width="253dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tlEmail"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:hint="email"
-                android:layout_height="wrap_content"/>
-
-
-    </com.example.myapplication.customedittext.EditTextEmailField>
-
-    <com.example.myapplication.customedittext.EditTextCurrencyField
-            android:layout_width="253dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tlCurrency"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        <EditText
-                android:id="@+id/etCurrency"
-                android:layout_width="match_parent"
-                android:hint="@string/currency_default_hint"
-                android:layout_height="wrap_content"/>
-
-
-    </com.example.myapplication.customedittext.EditTextCurrencyField>
 
     <Button
             android:id="@+id/btnRun"

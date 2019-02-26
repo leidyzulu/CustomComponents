@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        tlEmail.setRegex(android.util.Patterns.EMAIL_ADDRESS.toString())
-        tvPhone?.setRegex(PHONE_NUMBER_REGEX)
-
-
         btnRun.setOnClickListener {
           for (i in 0 until (llMain?.childCount ?: 0)){
               ((llMain as? ViewGroup)?.getChildAt(i) as? FormField)?.let {

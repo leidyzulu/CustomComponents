@@ -30,13 +30,12 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
     }
 
     override fun isValid(): ValidationResult {
-
         return when {
             mEditText?.text.toString().isEmpty() -> ValidationResult(
                 false,
-                VALIDATE_EMPTY
+                VALIDATE_EMPTY_ERROR
             )
-            mRegex != null && !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getMessage()
+            mRegex != null && !Pattern.compile(mRegex).matcher(mEditText?.text.toString()).matches() -> getErrorValidateResult()
             else -> ValidationResult(true, EMPTY)
         }
     }
@@ -51,6 +50,8 @@ abstract class EditTextFormField constructor(context: Context, attrs: AttributeS
         this.error = EMPTY
     }
 
-    abstract fun getMessage(): ValidationResult
+    abstract fun getErrorValidateResult(): ValidationResult
+
+    abstract fun setup()
 
 }

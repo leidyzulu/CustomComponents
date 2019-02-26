@@ -6,7 +6,6 @@ import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import com.example.myapplication.customedittext.EditTextEmailField
@@ -28,7 +27,7 @@ class EditTextEmailFieldTest : MockActivityTest()
 
     @Before
     fun setup() {
-        MockActivity.layout = R.layout.activity_main
+        MockActivity.layout = R.layout.activity_emailtestfield_test
     }
 
 
@@ -36,7 +35,7 @@ class EditTextEmailFieldTest : MockActivityTest()
     fun shouldShowAndErrorWithEmptyEmail() {
         restartActivity()
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
+            ValidationResult(false, VALIDATE_EMPTY_ERROR),
             (ruleActivity.activity.findViewById<View>(R.id.tlEmail) as? FormField)?.isValid()
         )
     }
@@ -55,7 +54,7 @@ class EditTextEmailFieldTest : MockActivityTest()
 
         //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMAIL),
+            ValidationResult(false, VALIDATE_EMAIL_ERROR),
             field?.isValid()
         )
     }
@@ -74,7 +73,7 @@ class EditTextEmailFieldTest : MockActivityTest()
 
         //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMAIL),
+            ValidationResult(false, VALIDATE_EMAIL_ERROR),
             field?.isValid()
         )
     }
@@ -93,7 +92,7 @@ class EditTextEmailFieldTest : MockActivityTest()
 
         //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMAIL),
+            ValidationResult(false, VALIDATE_EMAIL_ERROR),
             field?.isValid()
         )
     }
@@ -112,7 +111,7 @@ class EditTextEmailFieldTest : MockActivityTest()
 
         //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMAIL),
+            ValidationResult(false, VALIDATE_EMAIL_ERROR),
             field?.isValid()
         )
     }
@@ -133,33 +132,5 @@ class EditTextEmailFieldTest : MockActivityTest()
             ValidationResult(true, EMPTY),
             field?.isValid()
         )
-    }
-
-
-    @Ignore
-    @Test
-    fun shouldShowError() {
-        ruleActivity.runOnUiThread {
-            (ruleActivity.activity.findViewById<View>(R.id.tvPhone) as? FormField)?.showError(VALIDATE_EMPTY)
-        }
-        Espresso.onView(withId(R.id.tvPhone)).check(matches(hasErrorText(VALIDATE_EMPTY)))
-    }
-
-    fun withErrorText(expectedErrorText: Matcher<String>): Matcher<View> {
-        return object : TypeSafeMatcher<View>() {
-            override fun matchesSafely(view: View): Boolean {
-                if (view !is TextInputLayout) {
-                    return false
-                }
-
-                val error = view.error ?: return false
-
-                return expectedErrorText.equals(error.toString())
-            }
-
-            override fun describeTo(description: Description) {
-
-            }
-        }
     }
 }

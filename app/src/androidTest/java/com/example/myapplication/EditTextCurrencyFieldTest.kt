@@ -2,14 +2,11 @@ package com.example.myapplication
 
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.rule.ActivityTestRule
 import android.view.View
-import com.example.myapplication.customedittext.EditTextEmailField
 import com.example.myapplication.formfield.FormField
 import com.example.myapplication.formfield.ValidationResult
-import com.example.myapplication.helper.VALIDATE_EMPTY
+import com.example.myapplication.helper.VALIDATE_EMPTY_ERROR
 import org.junit.*
 
 class EditTextCurrencyFieldTest : MockActivityTest() {
@@ -17,7 +14,7 @@ class EditTextCurrencyFieldTest : MockActivityTest() {
 
     @Before
     fun setup() {
-        MockActivity.layout = R.layout.activity_main
+        MockActivity.layout = R.layout.activity_currencyedittextfield_test
     }
 
     @Test
@@ -32,7 +29,7 @@ class EditTextCurrencyFieldTest : MockActivityTest() {
 
         //Then
         Assert.assertEquals(
-            ValidationResult(false, VALIDATE_EMPTY),
+            ValidationResult(false, VALIDATE_EMPTY_ERROR),
             result
         )
     }

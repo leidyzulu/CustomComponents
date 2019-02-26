@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.support.design.widget.TextInputLayout
 import android.support.test.rule.ActivityTestRule
 import org.junit.Rule
 
@@ -18,5 +19,11 @@ abstract class MockActivityTest {
             ruleActivity.finishActivity()
         }
         ruleActivity.launchActivity(Intent())
+    }
+
+    fun showErrorInInputLayout(textInputLayout: TextInputLayout, error: String) {
+        ruleActivity.runOnUiThread {
+            textInputLayout.error = error
+        }
     }
 }
