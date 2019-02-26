@@ -21,6 +21,7 @@ class BaseEditTextFieldTest : MockActivityTest() {
 
     @Test
     fun shouldDisplayDefaultHint() {
+        MockActivity.layout = R.layout.activity_baseedittextfield_test
         restartActivity()
 
         //Given
