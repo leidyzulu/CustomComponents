@@ -8,6 +8,7 @@ const val VALIDATE_DATE_ERROR = "Date incorrect."
 const val VALIDATE_CURRENCY_ERROR = "Currency incorrect."
 const val VALIDATE_CITY_ERROR = "City must belong to the state "
 const val VALIDATE_SPINNER_NO_SELECTION_ERROR = "Field %s must have an element selected"
+const val VALIDATE_RADIOGROUP_NO_SELECTION_ERROR = "Field must have an element selected"
 
 const val EMPTY = ""
 const val MAX_LENGHT = 12
