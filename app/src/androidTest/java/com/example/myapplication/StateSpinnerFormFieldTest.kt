@@ -20,7 +20,7 @@ import org.junit.Test
  * @author Oscar Gallon on 2/26/19.
  */
 class StateSpinnerFormFieldTest : MockActivityTest() {
-    
+
     @Before
     fun setup() {
         MockActivity.layout = R.layout.activity_statespinnerformfield_test

@@ -72,7 +72,7 @@ abstract class BaseRadioGroupFormField(context: Context, private val attrs: Attr
         this.error = EMPTY
     }
 
-    fun setup() {
+    override fun setup() {
         mRadioGroup = RadioGroup(context, attrs)
         for (i in 0 until mCountOptions) {
             mRadioGroup?.addView(RadioButton(context).apply {
