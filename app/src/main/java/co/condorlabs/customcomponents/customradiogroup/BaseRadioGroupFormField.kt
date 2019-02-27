@@ -79,6 +79,7 @@ abstract class BaseRadioGroupFormField(context: Context, private val mAttrs: Att
 
     override fun setup() {
         mTVLabel.text = mLabelText
+        addView(mTVLabel, mLayoutParams)
         mRadioGroup = RadioGroup(context, mAttrs)
         for (i in 0 until mCountOptions) {
             mRadioGroup?.addView(RadioButton(context).apply {

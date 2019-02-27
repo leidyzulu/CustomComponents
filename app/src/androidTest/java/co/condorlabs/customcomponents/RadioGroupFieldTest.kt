@@ -2,6 +2,7 @@ package co.condorlabs.customcomponents
 
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
+import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
 import co.condorlabs.customcomponents.customradiogroup.RadioGroupFormField
 import co.condorlabs.customcomponents.formfield.ValidationResult
@@ -71,6 +72,20 @@ class RadioGroupFieldTest : MockActivityTest(){
         Assert.assertEquals(
             ValidationResult(true, EMPTY), result
         )
+    }
+
+    @Test
+    fun shouldDisplayLabel() {
+        restartActivity()
+
+        //Given
+        val view = Espresso.onView(ViewMatchers.withText("Custom radio group"))
+
+        //When
+        view.perform(ViewActions.click())
+
+        //Then
+        view.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
 
