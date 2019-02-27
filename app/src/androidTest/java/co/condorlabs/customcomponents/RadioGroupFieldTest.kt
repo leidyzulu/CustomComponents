@@ -75,7 +75,7 @@ class RadioGroupFieldTest : MockActivityTest(){
     }
 
     @Test
-    fun shouldDisplayLabel() {
+    fun shouldDisplayTitle() {
         restartActivity()
 
         //Given
@@ -87,7 +87,5 @@ class RadioGroupFieldTest : MockActivityTest(){
         //Then
         view.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-
-
 
 }
